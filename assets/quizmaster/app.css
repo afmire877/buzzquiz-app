@@ -1,0 +1,46 @@
+@font-face {
+    font-family: 'tt_norms_probold';
+    src: url('typetype_-_tt_norms_pro_bold-webfont.woff2') format('woff2'),
+         url('typetype_-_tt_norms_pro_bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  
+  }
+  
+  
+  @font-face {
+    font-family: 'tt_norms_proitalic';
+    src: url('typetype_-_tt_norms_pro_italic-webfont.woff2') format('woff2'),
+         url('typetype_-_tt_norms_pro_italic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  
+  }
+  
+  
+  @font-face {
+    font-family: 'tt_norms_prolight';
+    src: url('typetype_-_tt_norms_pro_light-webfont.woff2') format('woff2'),
+         url('typetype_-_tt_norms_pro_light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  
+  }
+  
+  
+  @font-face {
+    font-family: 'tt_norms_proitalic';
+    src: url('tt_norms_pro_italic-webfont.woff2') format('woff2'),
+         url('tt_norms_pro_italic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  
+  }
+  
+  .answer {
+    font-family: 'tt_norms_prolight';
+    font-size: 1rem;
+    display: block;
+    margin: 0 auto;
+    width: 40%;
+  }
