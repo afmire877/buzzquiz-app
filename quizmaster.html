@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
+    <title>Quizmaster Start screen</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link type="text/css" rel="stylesheet" href="assets/quizmaster/app.css">
     <script src="assets/quizmaster/app.js"></script>
@@ -12,10 +12,15 @@
 
   <body>
     <div>
+      <a href="#" id="linkback"><i class="arrow left"></i> Back </a>
+    </div>
+
+
+    <div>
       <div class="dropdown">
-        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Set overall quiz settings
-        </button>
+        </a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <a class="dropdown-item" href="#">Something here</a>
           <a class="dropdown-item" href="#">Something here</a>
@@ -24,10 +29,10 @@
       </div>
     </div>
 
-    <div>
-      <h1>To begin, start by adding a new question or round <h1>
-        <button class="buzzbutton" id="blackbtn"><h3>Add question</h3></button> 
-        <button class="buzzbutton" id="yellowbtn"><h3>Add round</h3></button> 
+    <div class="textdivheader">
+      <h1 class="header1">To begin, start by adding a new question or round </h1>
+        <button class="buzzbutton align-middle" id="yellowbtn"><h3>Add question</h3></button> 
+        <button class="buzzbutton align-middle" id="blackbtn"><h3>Add round</h3></button> 
     </div>
 
     <!-- Optional JavaScript -->

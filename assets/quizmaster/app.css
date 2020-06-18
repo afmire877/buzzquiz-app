@@ -32,15 +32,58 @@
 
 body {
   padding: 20px;
+  font-family: 
 }
 
+.dropdown, .dropdown-menu{
+  text-align: center;
+}
+
+.dropdown-toggle {
+  margin: 0 auto;
+}
+
+.questiondiv {
+  margin-top: 60px;
+  text-align: center;
+}
+
+.header1{
+  font-size: 20px;
+}
 
 .buzzbutton {
-  padding: 20px;
-  border-radius: 6px;
+  padding: 10px 10px !important;
+  border-radius: 100px;
+  min-width: 130px;
+  border: none;
+  vertical-align: middle;
+  margin-top: 40px;
+  box-shadow: 0px 0px 10px #d1d1d1;
 }
 
 #yellowbtn {
   background-color: #ffdb00;
   color: black;
+  width: 40%;
 }
+
+#blackbtn {
+  background-color: black;
+  color: white;
+  width: 40%;
+}
+
+h3 {
+  font-size: 16px;
+  margin-bottom: 0px !important;
+  margin: 0px !important;
+}
+
+.tabitem {
+  padding: 20px; 
+}
+a:active {
+  background-color: yellow;
+}
+
