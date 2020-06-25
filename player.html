@@ -17,7 +17,10 @@
     />
     
     <!-- App CSS -->
-    <link rel="stylesheet" href="/assets/player/app.css"  />
+    <link rel="stylesheet" href="assets/player/app.css"  />
+    
+    <!-- Progress circle CSS -->
+    <link rel="stylesheet" href="assets/player/circle.css"  />
     
     <!-- Fontawesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -35,6 +38,9 @@
 	    
 	    body { font-family: TTNorms-Regular, sans-serif;  }
 		strong, .bold { font-family: TTNorms-Bold, sans-serif; font-weight: bold; }
+		
+		h1 {font-size: 75px;}
+		h2 {font-size: 35px;}
 	    
 	    
 	   .container {max-width: 770px;} 
@@ -52,14 +58,19 @@
 	   hr {width: 50%; display: block; float: left;}
 
 	   hr {
-		    margin-top: 0;
+		    margin-top: 1.5px;
 		    margin-bottom: 0;
 		    border: 0;
 		    border-top: 2px solid rgba(0,0,0,1);
 		    
 		}
 		
-		hr.selected {border-top: 5px solid rgba(0,0,0,1); border-radius: 50px}
+		hr.selected {margin-top: 0; border-top: 5px solid rgba(0,0,0,1); border-radius: 50px}
+		
+		.center-div {margin-left: calc(50% - 30px);!important; display: block;}
+	   
+	   
+	   
 	   
 	</style>
     
@@ -69,38 +80,50 @@
 
     <div class="container">
       <!-- navigation -->
-      <div class="row mt-5">
+      <div class="row mt-5 px-3">
         <div class="col">
 	        <i class="fas fa-chevron-left"></i>
         </div>
       </div>
       <!-- breadcrumbs -->
-      <div class="row">
+      <div class="row mt-4 px-3">
         <div class="col">
 	        <h2>Question 1/10</h2>
         </div>
       </div>
       <!-- question -->
-      <div class="row">
+      <div class="row mt-3 px-3">
         <div class="col">
 	       <h1> What is the name of this character?<h1>
         </div>
       </div>
       <!-- Timer -->
-      <div class="row">
+      <div class="row mt-3 px-3">
         <div class="col">
 	        <hr class=""/>
 	        <hr class="selected"/>
         </div>
       </div>
       <!-- answers -->
-      <div class="row">
+      <div class="row mt-3">
         <div class="col answer">
 	        <button class="selected"><div class="number">a</div> <p>Answer</p></button>
 	        <button><div class="number">b</div> <p>Answer</p></button>
 	        <button><div class="number">c</div> <p>Answer</p></button>
 	        <button class="correct"><div class="number">d</div> <p>Answer</p></button>
-	        
+	        <div class="row">
+		        <div class="col mt-4">
+			        <div class="center-div">
+				        <div class="c100 p50 small black">
+			                <span>2/10</span>
+			                <div class="slice">
+			                    <div class="bar"></div>
+			                    <div class="fill"></div>
+			                </div>
+			            </div>
+			        </div>
+		        </div>
+	        </div>
         </div>
       </div>
     </div>
