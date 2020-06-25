@@ -16,7 +16,7 @@
     </div>
 
 
-    <div>
+    <div> <!--- Navigation menu on top-->
       <div class="dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Set overall quiz settings
@@ -31,7 +31,12 @@
 
 
 
-<div class="container">
+
+<!--- Box for 1 question -->
+<div class="container" id="individualquestiondiv">
+    <div>
+        <h3 class="questionandnr"> Question 1 </h3>
+    </div> 
     <ul class="nav nav-tabs">
       <li class="tabitem active"><a data-toggle="tab" href="#menu">Text</a></li>
       <li class="tabitem"><a data-toggle="tab" href="#menu1">1 Img</a></li>
@@ -75,8 +80,7 @@
                 <div class="form-group">
                     <label for="img">Select 1 image: </label>
                     <input type="file" id="img" name="img" accept="image/*">
-                    <input type="submit">
-                </div>
+                   </div>
                 <div class="form-group">
                    <input type="text" class="form-control" id="imagequestion" placeholder="Question">
                 </div>
@@ -101,7 +105,7 @@
                           <option value="3">15 sec</option>
                         </select>
                       </div> 
-              </form>
+               </form>
         </div>
       </div>
      
@@ -110,13 +114,10 @@
     <div class="questiondiv">
         <form> 
             <div class="form-group">
-            <label for="img1of4">Select 4 images:</label>
-            <input type="file" id="img1of4" name="img" accept="image/*">
-            <input type="file" id="img2of4" name="img" accept="image/*">
-            <input type="file" id="img3of4" name="img" accept="image/*">
-            <input type="file" id="img4of4" name="img" accept="image/*">
-            <input type="submit">
-            </div>
+               <label for="files">Select 4 images:</label>
+                    <input type="file" id="files" name="files" multiple><br><br>
+                
+               </div>
             <div class="form-group">
                <input type="text" class="form-control" id="matchquestion" placeholder="Question">
             </div>
@@ -142,12 +143,24 @@
                     </select>
                   </div> 
           </form>
+
+
+
     </div>
       </div>
     </div>
+  </div> <!--- end of question block div -->
+
+
+
+  <div class="buttonsection"> <!--- This section should be pushed down when you click on one of these buttons -->
+      <div class="addnewquestion"> 
+          <button class="btn btn-warning" id="addnewquestionbutton"> Add another question </button>
+      </div>
+      <div class="sumbitquizbutton">
+        <button class="btn btn-secondary" id="submitquiznow"> Submit my quizzzz </button>
+      </div>
   </div>
-
-
 
 
 
