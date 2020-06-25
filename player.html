@@ -21,6 +21,9 @@
     
     <!-- Fontawesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	
+	<!-- TT norms -->
+    <link rel="stylesheet" type="text/css" href="https://buzzbar.co/assets/tt-norms.css"  rel="preload"/>
 
     <title>Buzzquizz</title>
     
@@ -28,6 +31,12 @@
     
     
     <style>
+	    
+	    
+	    body { font-family: TTNorms-Regular, sans-serif;  }
+		strong, .bold { font-family: TTNorms-Bold, sans-serif; font-weight: bold; }
+	    
+	    
 	   .container {max-width: 770px;} 
 	    
 	   .answer {background-color: #F0F0F0; border-radius: 50px 50px 0 0; padding: 50px 25px; margin-top: 20px; font-size: 25px; font-weight: bold;} 
@@ -38,7 +47,20 @@
 	   .answer .correct {background-color: #6ACC4F; color: #fff;}
 	   
 	   .number {width: 50px; height: 50px; border-radius: 50px; color: #fff; background-color: #000; display: block; padding: 5px 0; float: left; text-align: center; margin-right: 20px;}
-	   .answer p {margin: 0; margin-top: 7px;}
+	   .answer p {margin: 0; margin-top: 7px; font-family: TTNorms-Bold, sans-serif; font-weight: bold;}
+	   
+	   hr {width: 50%; display: block; float: left;}
+
+	   hr {
+		    margin-top: 0;
+		    margin-bottom: 0;
+		    border: 0;
+		    border-top: 2px solid rgba(0,0,0,1);
+		    
+		}
+		
+		hr.selected {border-top: 5px solid rgba(0,0,0,1); border-radius: 50px}
+	   
 	</style>
     
     
@@ -47,7 +69,7 @@
 
     <div class="container">
       <!-- navigation -->
-      <div class="row">
+      <div class="row mt-5">
         <div class="col">
 	        <i class="fas fa-chevron-left"></i>
         </div>
@@ -67,18 +89,17 @@
       <!-- Timer -->
       <div class="row">
         <div class="col">
-	        <div class="progress">
-				 <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-			</div>
+	        <hr class=""/>
+	        <hr class="selected"/>
         </div>
       </div>
       <!-- answers -->
       <div class="row">
         <div class="col answer">
-	        <button class="selected"><div class="number">A</div> <p>Answer</p></button>
-	        <button><div class="number">A</div> <p>Answer</p></button>
-	        <button><div class="number">A</div> <p>Answer</p></button>
-	        <button class="correct"><div class="number">A</div> <p>Answer</p></button>
+	        <button class="selected"><div class="number">a</div> <p>Answer</p></button>
+	        <button><div class="number">b</div> <p>Answer</p></button>
+	        <button><div class="number">c</div> <p>Answer</p></button>
+	        <button class="correct"><div class="number">d</div> <p>Answer</p></button>
 	        
         </div>
       </div>
