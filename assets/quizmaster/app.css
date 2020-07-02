@@ -80,9 +80,22 @@ h3 {
   margin: 0px !important;
 }
 
-.tabitem {
-  padding: 20px; 
+.questiondiv {
+  margin-top: 40px;
 }
+
+.textquestiondiv {
+  display: none;
+}
+
+.imagequestiondiv {
+  display: none;
+}
+
+.matchquestiondiv {
+  display: none;
+}
+
 a:active {
   background-color: yellow;
 }
@@ -100,3 +113,4 @@ a:active {
 .btn {
   margin-top: 10px !important;
 }
+
