@@ -5,8 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Quizmaster screen add question</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link type="text/css" rel="stylesheet" href="assets/quizmaster/app.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link type="text/css" rel="stylesheet" href="assets/quizmaster/app.css" />
     <script src="assets/quizmaster/app.js"></script>
   </head>
 
@@ -15,10 +20,16 @@
       <a href="#" id="linkback"><i class="arrow left"></i> Back </a>
     </div>
 
-
     <div>
       <div class="dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          id="navbarDropdownMenuLink"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
           Set overall quiz settings
         </a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -29,126 +40,211 @@
       </div>
     </div>
 
+    <div class="container question_container">
+      <ul class="nav nav-tabs">
+        <li class="tabitem active">
+          <a data-toggle="tab" href="#menu">Text</a>
+        </li>
+        <li class="tabitem"><a data-toggle="tab" href="#menu1">Image</a></li>
+        <li class="tabitem"><a data-toggle="tab" href="#menu2">Match</a></li>
+      </ul>
 
-
-<div class="container">
-    <ul class="nav nav-tabs">
-      <li class="tabitem active"><a data-toggle="tab" href="#menu">Text</a></li>
-      <li class="tabitem"><a data-toggle="tab" href="#menu1">Image</a></li>
-      <li class="tabitem"><a data-toggle="tab" href="#menu2">Match</a></li>
-    </ul>
-  
-    <div class="tab-content">
-      <div id="menu" class="tab-pane active">
-        <div class="questiondiv">
+      <div class="tab-content">
+        <div id="menu" class="tab-pane active">
+          <div class="questiondiv">
             <form>
-                <div class="form-group">
-                   <input type="text" class="form-control" id="question" placeholder="Question">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" id="correctanswer" placeholder="Correct answer">
-                 </div>
-                 <div class="form-group">
-                    <input type="text" class="form-control" id="otheranswer1" placeholder="Add another answer 1">
-                 </div>
-                 <div class="form-group">
-                    <input type="text" class="form-control" id="otheranswer2" placeholder="Add another answer 2">
-                 </div>
-                 <div class="form-group">
-                    <input type="text" class="form-control" id="otheranswer3" placeholder="Add another answer 3">
-                 </div>
-                 <div class="col-auto my-1">
-                        <label class="mr-sm-2" for="selecttime">set time</label>
-                        <select class="custom-select mr-sm-2" id="selecttime">
-                          <option selected>Set time</option>
-                          <option value="1">5 sec</option>
-                          <option value="2">10 sec</option>
-                          <option value="3">15 sec</option>
-                        </select>
-                      </div> 
-              </form>
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="question"
+                  placeholder="Question"
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="correctanswer"
+                  placeholder="Correct answer"
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="otheranswer1"
+                  placeholder="Add another answer 1"
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="otheranswer2"
+                  placeholder="Add another answer 2"
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="otheranswer3"
+                  placeholder="Add another answer 3"
+                />
+              </div>
+              <div class="col-auto my-1">
+                <label class="mr-sm-2" for="selecttime">set time</label>
+                <select class="custom-select mr-sm-2" id="selecttime">
+                  <option selected>Set time</option>
+                  <option value="1">5 sec</option>
+                  <option value="2">10 sec</option>
+                  <option value="3">15 sec</option>
+                </select>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div id="menu1" class="tab-pane fade">
+          <div class="questiondiv">
+            <form>
+              <div class="form-group">
+                <label for="img">Select image:</label>
+                <input type="file" id="img" name="img" accept="image/*" />
+                <input type="submit" />
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="imagequestion"
+                  placeholder="Question"
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="imgcorrectanswer"
+                  placeholder="Correct answer"
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="imgotheranswer1"
+                  placeholder="Add another answer 1"
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="imgotheranswer2"
+                  placeholder="Add another answer 2"
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="imgotheranswer3"
+                  placeholder="Add another answer 3"
+                />
+              </div>
+              <div class="col-auto my-1">
+                <label class="mr-sm-2" for="imgselecttime">set time</label>
+                <select class="custom-select mr-sm-2" id="imgselecttime">
+                  <option selected>Set time</option>
+                  <option value="1">5 sec</option>
+                  <option value="2">10 sec</option>
+                  <option value="3">15 sec</option>
+                </select>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div id="menu2" class="tab-pane fade">
+          <div class="questiondiv">
+            <form>
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="matchquestion"
+                  placeholder="Question"
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="matchcorrectanswer"
+                  placeholder="Correct answer"
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="matchotheranswer1"
+                  placeholder="Add another answer 1"
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="matchotheranswer2"
+                  placeholder="Add another answer 2"
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="matchotheranswer3"
+                  placeholder="Add another answer 3"
+                />
+              </div>
+              <div class="col-auto my-1">
+                <label class="mr-sm-2" for="selecttime">set time</label>
+                <select class="custom-select mr-sm-2" id="selecttime">
+                  <option selected>Set time</option>
+                  <option value="1">5 sec</option>
+                  <option value="2">10 sec</option>
+                  <option value="3">15 sec</option>
+                </select>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-      <div id="menu1" class="tab-pane fade">
-        <div class="questiondiv">
-            <form>
-                <div class="form-group">
-                    <label for="img">Select image:</label>
-                    <input type="file" id="img" name="img" accept="image/*">
-                    <input type="submit">
-                </div>
-                <div class="form-group">
-                   <input type="text" class="form-control" id="imagequestion" placeholder="Question">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" id="imgcorrectanswer" placeholder="Correct answer">
-                 </div>
-                 <div class="form-group">
-                    <input type="text" class="form-control" id="imgotheranswer1" placeholder="Add another answer 1">
-                 </div>
-                 <div class="form-group">
-                    <input type="text" class="form-control" id="imgotheranswer2" placeholder="Add another answer 2">
-                 </div>
-                 <div class="form-group">
-                    <input type="text" class="form-control" id="imgotheranswer3" placeholder="Add another answer 3">
-                 </div>
-                 <div class="col-auto my-1">
-                        <label class="mr-sm-2" for="imgselecttime">set time</label>
-                        <select class="custom-select mr-sm-2" id="imgselecttime">
-                          <option selected>Set time</option>
-                          <option value="1">5 sec</option>
-                          <option value="2">10 sec</option>
-                          <option value="3">15 sec</option>
-                        </select>
-                      </div> 
-              </form>
-        </div>
-      </div>
-     
-      <div id="menu2" class="tab-pane fade">
-       
-    <div class="questiondiv">
-        <form>
-            <div class="form-group">
-               <input type="text" class="form-control" id="matchquestion" placeholder="Question">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" id="matchcorrectanswer" placeholder="Correct answer">
-             </div>
-             <div class="form-group">
-                <input type="text" class="form-control" id="matchotheranswer1" placeholder="Add another answer 1">
-             </div>
-             <div class="form-group">
-                <input type="text" class="form-control" id="matchotheranswer2" placeholder="Add another answer 2">
-             </div>
-             <div class="form-group">
-                <input type="text" class="form-control" id="matchotheranswer3" placeholder="Add another answer 3">
-             </div>
-             <div class="col-auto my-1">
-                    <label class="mr-sm-2" for="selecttime">set time</label>
-                    <select class="custom-select mr-sm-2" id="selecttime">
-                      <option selected>Set time</option>
-                      <option value="1">5 sec</option>
-                      <option value="2">10 sec</option>
-                      <option value="3">15 sec</option>
-                    </select>
-                  </div> 
-          </form>
     </div>
-      </div>
-    </div>
-  </div>
-
-
-
-
-
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+      integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+      crossorigin="anonymous"
+    ></script>
   </body>
-
 </html>

@@ -87,3 +87,8 @@ a:active {
   background-color: yellow;
 }
 
+
+.container.question_container.hide{
+    max-height: 51px;
+    overflow: hidden;
+}
