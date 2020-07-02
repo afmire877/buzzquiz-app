@@ -8,21 +8,18 @@ function initQuizMaster() {
     console.log("yolo");
     addTextQuestion();
   });
+
+  $(".add_question").on("click", function () {
+    console.log("yolo1");
+    addImageQuestion();
+  });
+
+  $(".add_question").on("click", function () {
+    console.log("yolo2");
+    addMatchQuestion();
+  });
 }
-
-$(".add_question").on("click", function () {
-   console.log("yolo1");
-   addImageQuestion();
- });
 }
-
-$(".add_question").on("click", function () {
-   console.log("yolo2");
-   addMatchQuestion();
- });
-}
-
-
 
 // initialState = {
 //     session_id: '', //  {string } UUID
