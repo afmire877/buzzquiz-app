@@ -15,140 +15,116 @@
       integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
       crossorigin="anonymous"
     />
-    
+
     <!-- App CSS -->
-    <link rel="stylesheet" href="assets/player/app.css"  />
-    
+    <link rel="stylesheet" href="assets/player/app.css" />
+
     <!-- Progress circle CSS -->
-    <link rel="stylesheet" href="assets/player/circle.css"  />
-    
+    <link rel="stylesheet" href="assets/player/circle.css" />
+
     <!-- Fontawesome -->
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-	
-	<!-- TT norms -->
-    <link rel="stylesheet" type="text/css" href="https://buzzbar.co/assets/tt-norms.css"  rel="preload"/>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+      crossorigin="anonymous"
+    />
 
+    <!-- TT norms -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://buzzbar.co/assets/tt-norms.css"
+      rel="preload"
+    />
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script
+      defer
+      src="https://www.gstatic.com/firebasejs/7.15.0/firebase-database.js"
+    ></script>
+    <script src="https://unpkg.com/shortid-dist@1.0.5/dist/shortid-2.2.13.min.js"></script>
+    <script defer src="./assets/init-firebase.js"></script>
     <title>Buzzquizz</title>
-    
-    
-    
-    
-    <style>
-	    
-	    
-	    body { font-family: TTNorms-Regular, sans-serif;  }
-		strong, .bold { font-family: TTNorms-Bold, sans-serif; font-weight: bold; }
-		
-		h1 {font-size: 75px;}
-		h2 {font-size: 35px;}
-	    
-	    
-	   .container {max-width: 770px;} 
-	    
-	   .answer {background-color: #F0F0F0; border-radius: 50px 50px 0 0; padding: 50px 25px; margin-top: 20px; font-size: 25px; font-weight: bold;} 
-	   .answer button { background-color :#fff; border: none; border-radius: 50px; padding: 15px; width: 100%; float: left; display: block; margin-bottom: 20px; text-align: left; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);}
-	   
-	   .answer .selected {box-shadow: 0px 30px 10px rgba(0, 0, 0, 0.1);}
-	   .answer .selected .number { background-color: yellow; color: #000;}
-	   .answer .correct {background-color: #6ACC4F; color: #fff;}
-	   
-	   .number {width: 50px; height: 50px; border-radius: 50px; color: #fff; background-color: #000; display: block; padding: 5px 0; float: left; text-align: center; margin-right: 20px;}
-	   .answer p {margin: 0; margin-top: 7px; font-family: TTNorms-Bold, sans-serif; font-weight: bold;}
-	   
-	   hr {width: 50%; display: block; float: left;}
 
-	   hr {
-		    margin-top: 1.5px;
-		    margin-bottom: 0;
-		    border: 0;
-		    border-top: 2px solid rgba(0,0,0,1);
-		    
-		}
-		
-		hr.selected {margin-top: 0; border-top: 5px solid rgba(0,0,0,1); border-radius: 50px}
-		
-		.center-div {margin-left: calc(50% - 30px);!important; display: block;}
-	   
-	   
-	   
-	   
-	</style>
-    
-    
+    <style>
+
+
+         body { font-family: TTNorms-Regular, sans-serif;  }
+      strong, .bold { font-family: TTNorms-Bold, sans-serif; font-weight: bold; }
+
+      h1 {font-size: 75px;}
+      h2 {font-size: 35px;}
+
+
+        .container {max-width: 770px;}
+
+        .answer {background-color: #F0F0F0; border-radius: 50px 50px 0 0; padding: 50px 25px; margin-top: 20px; font-size: 25px; font-weight: bold;}
+        .answer button { background-color :#fff; border: none; border-radius: 50px; padding: 15px; width: 100%; float: left; display: block; margin-bottom: 20px; text-align: left; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);}
+
+        .answer .selected {box-shadow: 0px 30px 10px rgba(0, 0, 0, 0.1);}
+        .answer .selected .number { background-color: yellow; color: #000;}
+        .answer .correct {background-color: #6ACC4F; color: #fff;}
+
+        .number {width: 50px; height: 50px; border-radius: 50px; color: #fff; background-color: #000; display: block; padding: 5px 0; float: left; text-align: center; margin-right: 20px;}
+        .answer p {margin: 0; margin-top: 7px; font-family: TTNorms-Bold, sans-serif; font-weight: bold;}
+
+        hr {width: 50%; display: block; float: left;}
+
+        hr {
+          margin-top: 1.5px;
+          margin-bottom: 0;
+          border: 0;
+          border-top: 2px solid rgba(0,0,0,1);
+
+      }
+
+      hr.selected {margin-top: 0; border-top: 5px solid rgba(0,0,0,1); border-radius: 50px}
+
+      .center-div {margin-left: calc(50% - 30px);!important; display: block;}
+      .game_container {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .join_room_form {
+
+      }
+      .players_grid {
+        display: grid;
+        margin-top: 100px;
+        grid-template-columns: repeat(auto-fill, 130px);
+        grid-row-gap: 30px;
+        /* grid-template-rows: ; */
+        justify-content: center;
+      }
+      .players_grid-item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .players_grid-item img{
+        height: 60px;
+      }
+      .waiting_room {
+        width: 100%;
+      }
+    </style>
   </head>
   <body>
-
-    <div class="container">
-      <!-- navigation -->
-      <div class="row mt-5 px-3">
-        <div class="col">
-	        <i class="fas fa-chevron-left"></i>
-        </div>
-      </div>
-      <!-- breadcrumbs -->
-      <div class="row mt-4 px-3">
-        <div class="col">
-	        <h2>Question 1/10</h2>
-        </div>
-      </div>
-      <!-- question -->
-      <div class="row mt-3 px-3">
-        <div class="col">
-	       <h1> What is the name of this character?<h1>
-        </div>
-      </div>
-      <!-- single image-->
-      <div class="row mt-3 px-3">
-        <div class="col">
-		   <img src="https://via.placeholder.com/1500x1000" width="100%"/>
-        </div>
-      </div>
-      <!-- four image-->
-      <div class="row mt-3 px-3">
-        <div class="col-6 mb-3">
-		   <img src="https://via.placeholder.com/1500x1000" width="100%"/>
-        </div>
-        <div class="col-6 mb-3">
-		   <img src="https://via.placeholder.com/1500x1000" width="100%"/>
-        </div>
-        <div class="col-6 mb-3">
-		   <img src="https://via.placeholder.com/1500x1000" width="100%"/>
-        </div>
-        <div class="col-6 mb-3">
-		   <img src="https://via.placeholder.com/1500x1000" width="100%"/>
-        </div>
-      </div>
-      <!-- Timer -->
-      <div class="row mt-3 px-3">
-        <div class="col">
-	        <hr class=""/>
-	        <hr class="selected"/>
-        </div>
-      </div>
-      <!-- answers -->
-      <div class="row mt-3">
-        <div class="col answer">
-	        <button class="selected"><div class="number">a</div> <p>Answer</p></button>
-	        <button><div class="number">b</div> <p>Answer</p></button>
-	        <button><div class="number">c</div> <p>Answer</p></button>
-	        <button class="correct"><div class="number">d</div> <p>Answer</p></button>
-	        <div class="row">
-		        <div class="col mt-4">
-			        <div class="center-div">
-				        <div class="c100 p50 small black">
-			                <span>2/10</span>
-			                <div class="slice">
-			                    <div class="bar"></div>
-			                    <div class="fill"></div>
-			                </div>
-			            </div>
-			        </div>
-		        </div>
-	        </div>
-        </div>
+    <div class="container game_container">
+      <div class="join_room_form">
+        <h2>Enter room ID</h2>
+        <input type="text" name="room_id" id="join_room_id" />
+        <button id="join_room_button" class="btn btn-warning">Join Room</button>
       </div>
     </div>
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script
@@ -166,10 +142,10 @@
       integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
       crossorigin="anonymous"
     ></script>
-    
+
+    <script></script>
+
     <!-- App JS -->
     <script src="/assets/player/app.js"></script>
-    
-    
   </body>
 </html>

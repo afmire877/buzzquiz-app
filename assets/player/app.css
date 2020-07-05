@@ -1,0 +1,8 @@
+.waiting_room {
+    display: flex;
+    flex-direction: column;
+}
+.waiting_room button,
+.waiting_room input {
+    align-self: center;
+}
