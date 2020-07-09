@@ -32,7 +32,8 @@ function initQuizMaster() {
 //                 id: '', // {string} for ref
 //                 type: '', // {string} Avalible types: "Image", "text", "match"
 //                 question: '', //  {string}
-//                 correct: '', // {string}
+//                 answers: [],
+//                 correctAns: '', // {string}
 //                 hasTimer: true, //  {boolean}
 //                 timer: 10, // {number} in seconds
 //                 points: null, // Number
@@ -160,8 +161,8 @@ function addTextQuestion() {
 }
 
 function addImageQuestion() {
-    let imagequestion = ` 
-    
+
+  let imagequestion = ` 
     <div class="imagequestiondiv questiondiv">
     <form>
         <div class="form-group">
@@ -199,6 +200,7 @@ function addImageQuestion() {
 
   function addMatchQuestion() {
     let matchquestion = ` 
+
     <div class="matchquestiondiv questiondiv">
     <form> 
         <div class="form-group">
