@@ -19,7 +19,6 @@ function initQuizMaster() {
     addMatchQuestion();
   });
 }
-}
 
 // initialState = {
 //     session_id: '', //  {string } UUID
@@ -32,7 +31,8 @@ function initQuizMaster() {
 //                 id: '', // {string} for ref
 //                 type: '', // {string} Avalible types: "Image", "text", "match"
 //                 question: '', //  {string}
-//                 correct: '', // {string}
+//                 answers: [],
+//                 correctAns: '', // {string}
 //                 hasTimer: true, //  {boolean}
 //                 timer: 10, // {number} in seconds
 //                 points: null, // Number
@@ -160,7 +160,7 @@ function addTextQuestion() {
 }
 
 function addImageQuestion() {
-    let question = ` 
+  let question = ` 
     
     <div class="imagequestiondiv questiondiv">
     <form>
@@ -194,11 +194,11 @@ function addImageQuestion() {
               </div> 
        </form>
 </div>`;
-    $("#game_creator_container").append(question);
-  }
+  $("#game_creator_container").append(question);
+}
 
-  function addMatchQuestion() {
-    let question = ` 
+function addMatchQuestion() {
+  let question = ` 
     <div class="matchquestiondiv questiondiv">
     <form> 
         <div class="form-group">
@@ -232,8 +232,8 @@ function addImageQuestion() {
               </div> 
       </form>
     </div>`;
-    $("#game_creator_container").append(question);
-  }
+  $("#game_creator_container").append(question);
+}
 
 // EventListners
 
