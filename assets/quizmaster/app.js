@@ -1,3 +1,4 @@
+let questions = [];
 function initQuizMaster() {
   // Before redirect, setup the game code gen
   // Create new Game state
@@ -6,19 +7,26 @@ function initQuizMaster() {
 
   $(".add_question").on("click", function () {
     console.log("yolo");
-    addTextQuestion();
+    questions.length;
+    addTextQuestion(questions.length);
   });
 
   $(".add_question").on("click", function () {
     console.log("yolo1");
-    addImageQuestion();
+    addImageQuestion(questions.length);
   });
 
   $(".add_question").on("click", function () {
     console.log("yolo2");
-    addMatchQuestion();
+    addMatchQuestion(questions.length);
   });
 }
+
+const submitQuizToFirebase = () => {
+  // Grab all the questions
+  
+  //
+};
 
 // initialState = {
 //     session_id: '', //  {string } UUID
@@ -126,9 +134,12 @@ function initQuizMaster() {
 //   ],
 // };
 
-function addTextQuestion() {
+function addTextQuestion(questionNumber) {
+  question.push({
+    id: questionNumber + 1,
+  });
   let question = ` 
-  <div class="textquestiondiv questiondiv">
+  <div class="textquestiondiv questiondiv question-${questionNumber}"  >
        <form>
               <div class="form-group">
                  <input type="text" class="form-control" id="question" placeholder="Question">
