@@ -15,120 +15,19 @@
       <a href="#" id="linkback"><i class="arrow left"></i> Back </a>
     </div>
 
-    <div class="textquestiondiv questiondiv">
-         <form>
-                <div class="form-group">
-                   <input type="text" class="form-control" id="question" placeholder="Question">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" id="correctanswer" placeholder="Correct answer">
-                 </div>
-                 <div class="form-group">
-                    <input type="text" class="form-control" id="otheranswer1" placeholder="Add another answer 1">
-                 </div>
-                 <div class="form-group">
-                    <input type="text" class="form-control" id="otheranswer2" placeholder="Add another answer 2">
-                 </div>
-                 <div class="form-group">
-                    <input type="text" class="form-control" id="otheranswer3" placeholder="Add another answer 3">
-                 </div>
-                 <div class="col-auto my-1">
-                        <label class="mr-sm-2" for="selecttime">set time</label>
-                        <select class="custom-select mr-sm-2" id="selecttime">
-                          <option selected>Set time</option>
-                          <option value="1">5 sec</option>
-                          <option value="2">10 sec</option>
-                          <option value="3">15 sec</option>
-                        </select>
-                      </div> 
-              </form>
-        </div>
-      
-
-        <div class="imagequestiondiv questiondiv">
-            <form>
-                <div class="form-group">
-                    <label for="img">Select 1 image: </label>
-                    <input type="file" id="img" name="img" accept="image/*">
-                   </div>
-                <div class="form-group">
-                   <input type="text" class="form-control" id="imagequestion" placeholder="Question">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" id="imgcorrectanswer" placeholder="Correct answer">
-                 </div>
-                 <div class="form-group">
-                    <input type="text" class="form-control" id="imgotheranswer1" placeholder="Add another answer 1">
-                 </div>
-                 <div class="form-group">
-                    <input type="text" class="form-control" id="imgotheranswer2" placeholder="Add another answer 2">
-                 </div>
-                 <div class="form-group">
-                    <input type="text" class="form-control" id="imgotheranswer3" placeholder="Add another answer 3">
-                 </div>
-                 <div class="col-auto my-1">
-                        <label class="mr-sm-2" for="imgselecttime">set time</label>
-                        <select class="custom-select mr-sm-2" id="imgselecttime">
-                          <option selected>Set time</option>
-                          <option value="1">5 sec</option>
-                          <option value="2">10 sec</option>
-                          <option value="3">15 sec</option>
-                        </select>
-                      </div> 
-               </form>
-        </div>
-  
-     
-    <div class="matchquestiondiv questiondiv">
-        <form> 
-            <div class="form-group">
-               <label for="files">Select 4 images:</label>
-                    <input type="file" id="files" name="files" multiple><br><br>
-                
-               </div>
-            <div class="form-group">
-               <input type="text" class="form-control" id="matchquestion" placeholder="Question">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" id="matchcorrectanswer" placeholder="Correct answer">
-             </div>
-             <div class="form-group">
-                <input type="text" class="form-control" id="matchotheranswer1" placeholder="Add another answer 1">
-             </div>
-             <div class="form-group">
-                <input type="text" class="form-control" id="matchotheranswer2" placeholder="Add another answer 2">
-             </div>
-             <div class="form-group">
-                <input type="text" class="form-control" id="matchotheranswer3" placeholder="Add another answer 3">
-             </div>
-             <div class="col-auto my-1">
-                    <label class="mr-sm-2" for="selecttime">set time</label>
-                    <select class="custom-select mr-sm-2" id="selecttime">
-                      <option selected>Set time</option>
-                      <option value="1">5 sec</option>
-                      <option value="2">10 sec</option>
-                      <option value="3">15 sec</option>
-                    </select>
-                  </div> 
-          </form>
-        </div>
-
-
- 
-
 
   <div class="buttonsection"> <!--- This section should be pushed down when you click on one of these buttons -->
       <div class="addnewquestion"> 
-          <button class="btn btn-warning" id="textqbutton"> Add Text question </button>
+          <button class="btn btn-warning add_textquestion" id="textqbutton"> Add text question </button>
       </div>
       <div class="addnewquestion"> 
-        <button class="btn btn-warning" id="imageqbutton"> Add Image question </button>
+        <button class="btn btn-warning add_imagequestion" id="imageqbutton"> Add image question </button>
     </div>
     <div class="addnewquestion"> 
-      <button class="btn btn-warning" id="matchqbutton"> Add Match question </button>
+      <button class="btn btn-warning add_matchquestion" id="matchqbutton"> Add match question </button>
   </div>
       <div class="sumbitquizbutton">
-        <button class="btn btn-secondary" id="submitquiznow"> Submit my quizzzz </button>
+        <button class="btn btn-secondary submit_quiz" id="submitquiznow"> Submit my quizzzz </button>
       </div>
   </div>
 

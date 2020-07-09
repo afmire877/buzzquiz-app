@@ -112,5 +112,6 @@ a:active {
 
 .btn {
   margin-top: 10px !important;
+  display: inline-block;
 }
 

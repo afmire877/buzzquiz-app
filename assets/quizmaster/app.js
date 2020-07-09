@@ -4,22 +4,22 @@ function initQuizMaster() {
   // Add to LocalStorage
   // Redirect to quizmaster.html
 
-  $(".add_question").on("click", function () {
+  $(".add_textquestion").on("click", function () {
     console.log("yolo");
     addTextQuestion();
   });
 
-  $(".add_question").on("click", function () {
+  $(".add_imagequestion").on("click", function () {
     console.log("yolo1");
     addImageQuestion();
   });
 
-  $(".add_question").on("click", function () {
+  $(".add_matchquestion").on("click", function () {
     console.log("yolo2");
     addMatchQuestion();
   });
 }
-}
+
 
 // initialState = {
 //     session_id: '', //  {string } UUID
@@ -127,7 +127,7 @@ function initQuizMaster() {
 // };
 
 function addTextQuestion() {
-  let question = ` 
+  let textquestion = ` 
   <div class="textquestiondiv questiondiv">
        <form>
               <div class="form-group">
@@ -156,11 +156,11 @@ function addTextQuestion() {
                     </div> 
             </form>
       </div>`;
-  $("#game_creator_container").append(question);
+  $("#game_creator_container").append(textquestion);
 }
 
 function addImageQuestion() {
-    let question = ` 
+    let imagequestion = ` 
     
     <div class="imagequestiondiv questiondiv">
     <form>
@@ -194,11 +194,11 @@ function addImageQuestion() {
               </div> 
        </form>
 </div>`;
-    $("#game_creator_container").append(question);
+    $("#game_creator_container").append(imagequestion);
   }
 
   function addMatchQuestion() {
-    let question = ` 
+    let matchquestion = ` 
     <div class="matchquestiondiv questiondiv">
     <form> 
         <div class="form-group">
@@ -232,7 +232,7 @@ function addImageQuestion() {
               </div> 
       </form>
     </div>`;
-    $("#game_creator_container").append(question);
+    $("#game_creator_container").append(matchquestion);
   }
 
 // EventListners
