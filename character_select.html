@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+
+    <!-- App CSS -->
+    <link rel="stylesheet" href="assets/player/app.css" />
+
+    <!-- Progress circle CSS -->
+    <link rel="stylesheet" href="assets/player/circle.css" />
+
+    <!-- Fontawesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+      crossorigin="anonymous"
+    />
+
+    <!-- TT norms -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://buzzbar.co/assets/tt-norms.css"
+      rel="preload"
+    />
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script
+      defer
+      src="https://www.gstatic.com/firebasejs/7.15.0/firebase-database.js"
+    ></script>
+    <script src="https://unpkg.com/shortid-dist@1.0.5/dist/shortid-2.2.13.min.js"></script>
+    <script defer src="./assets/init-firebase.js"></script>
+    <title>Buzzquizz</title>
+
+    <style>
+
+
+         body { font-family: TTNorms-Regular, sans-serif;  }
+      strong, .bold { font-family: TTNorms-Bold, sans-serif; font-weight: bold; }
+
+      h1 {font-size: 75px;}
+      h2 {font-size: 35px;}
+
+
+        .container {max-width: 770px;}
+
+        .answer {background-color: #F0F0F0; border-radius: 50px 50px 0 0; padding: 50px 25px; margin-top: 20px; font-size: 25px; font-weight: bold;}
+        .answer button { background-color :#fff; border: none; border-radius: 50px; padding: 15px; width: 100%; float: left; display: block; margin-bottom: 20px; text-align: left; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);}
+
+        .answer .selected {box-shadow: 0px 30px 10px rgba(0, 0, 0, 0.1);}
+        .answer .selected .number { background-color: yellow; color: #000;}
+        .answer .correct {background-color: #6ACC4F; color: #fff;}
+
+        .number {width: 50px; height: 50px; border-radius: 50px; color: #fff; background-color: #000; display: block; padding: 5px 0; float: left; text-align: center; margin-right: 20px;}
+        .answer p {margin: 0; margin-top: 7px; font-family: TTNorms-Bold, sans-serif; font-weight: bold;}
+
+        hr {width: 50%; display: block; float: left;}
+
+        hr {
+          margin-top: 1.5px;
+          margin-bottom: 0;
+          border: 0;
+          border-top: 2px solid rgba(0,0,0,1);
+
+      }
+
+      hr.selected {margin-top: 0; border-top: 5px solid rgba(0,0,0,1); border-radius: 50px}
+
+      .center-div {margin-left: calc(50% - 30px);!important; display: block;}
+      .game_container {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .join_room_form {
+
+      }
+      .players_grid {
+        display: grid;
+        margin-top: 100px;
+        grid-template-columns: repeat(auto-fill, 130px);
+        grid-row-gap: 30px;
+        /* grid-template-rows: ; */
+        justify-content: center;
+      }
+      .players_grid-item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .players_grid-item img{
+        height: 60px;
+      }
+      .waiting_room {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <<div class="container">
+  <!-- navigation -->
+  <div class="row mt-5 px-3">
+    <div class="col">
+      <i class="fas fa-chevron-left"></i>
+    </div>
+  </div>
+  <!-- breadcrumbs -->
+  <div class="row mt-4 px-3">
+    <div class="col">
+      <h2>Profile creation</h2>
+    </div>
+  </div>
+  <!-- question -->
+  <div class="row mt-3 px-3">
+    <div class="col">
+     <h1>Choose your character!<h1>
+    </div>
+  </div>
+  <!-- question -->
+  <div class="row mt-3 px-3">
+    <div class="col">
+     <form>
+		  <div class="form-group">
+		    <h3 for="exampleInputEmail1" class="mb-3">Who are you?</h3>
+		    <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="John Smith">
+		    <small id="emailHelp" class="form-text text-muted mt-3">Keep it clean people.</small>
+		  </div>
+     </form>
+    </div>
+  </div>
+  <!-- four image-->
+  <div class="row mt-5 px-3">
+	<div class="col-12 mb-4">
+		<h3 for="exampleInputEmail1" class="mb-3">Who speaks to your soul?</h3>
+	</div>
+    <div class="col-4 mb-4 text-center">
+		<img src="https://via.placeholder.com/1500x1500" width="100%" class="rounded-circle"/>
+		<h3 class="mt-3">Name</h3>
+    </div>
+    <div class="col-4 mb-4 text-center">
+		<img src="https://via.placeholder.com/1500x1500" width="100%" class="rounded-circle"/>
+		<h3 class="mt-3">Name</h3>
+    </div>
+    <div class="col-4 mb-4 text-center">
+		<img src="https://via.placeholder.com/1500x1500" width="100%" class="rounded-circle"/>
+		<h3 class="mt-3">Name</h3>
+    </div>
+    <div class="col-4 mb-4 text-center">
+		<img src="https://via.placeholder.com/1500x1500" width="100%" class="rounded-circle"/>
+		<h3 class="mt-3">Name</h3>
+    </div>
+    <div class="col-4 mb-4 text-center">
+		<img src="https://via.placeholder.com/1500x1500" width="100%" class="rounded-circle"/>
+		<h3 class="mt-3">Name</h3>
+    </div>
+    <div class="col-4 mb-4 text-center">
+		<img src="https://via.placeholder.com/1500x1500" width="100%" class="rounded-circle"/>
+		<h3 class="mt-3">Name</h3>
+    </div>
+    <div class="col-4 mb-4 text-center">
+		<img src="https://via.placeholder.com/1500x1500" width="100%" class="rounded-circle"/>
+		<h3 class="mt-3">Name</h3>
+    </div>
+    <div class="col-4 mb-4 text-center">
+		<img src="https://via.placeholder.com/1500x1500" width="100%" class="rounded-circle"/>
+		<h3 class="mt-3">Name</h3>
+    </div>
+    <div class="col-4 mb-4 text-center">
+		<img src="https://via.placeholder.com/1500x1500" width="100%" class="rounded-circle"/>
+		<h3 class="mt-3">Name</h3>
+    </div>
+  </div>
+  <div class="row mt-3 px-3">
+	  <div class="col-12 mb-4 text-center">
+	  		<button class="btn btn-warning btn-lg">Next</button>
+	  </div>
+  </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+      crossorigin="anonymous"
+    ></script>
+
+    <script></script>
+
+    <!-- App JS -->
+    <script src="/assets/player/app.js"></script>
+  </body>
+</html>
