@@ -189,3 +189,10 @@ const QuestionComponent = () => {
  `;
   $(".game_container").append(question);
 };
+
+const addPlayerToFirebase = (player) => {
+  db.ref(`/${game_state.session_id}/players`).set([
+    ...game_state.players,
+    player,
+  ]);
+};
