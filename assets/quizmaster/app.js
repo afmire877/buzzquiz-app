@@ -5,18 +5,18 @@ function initQuizMaster() {
   // Add to LocalStorage
   // Redirect to quizmaster.html
 
-  $(".add_question").on("click", function () {
+  $(".add_textquestion").on("click", function () {
     console.log("yolo");
     questions.length;
     addTextQuestion(questions.length);
   });
 
-  $(".add_question").on("click", function () {
+  $(".add_imagequestion").on("click", function () {
     console.log("yolo1");
     addImageQuestion(questions.length);
   });
 
-  $(".add_question").on("click", function () {
+  $(".add_matchquestion").on("click", function () {
     console.log("yolo2");
     addMatchQuestion(questions.length);
   });
@@ -24,7 +24,6 @@ function initQuizMaster() {
 
 const submitQuizToFirebase = () => {
   // Grab all the questions
-  
   //
 };
 
@@ -138,8 +137,8 @@ function addTextQuestion(questionNumber) {
   question.push({
     id: questionNumber + 1,
   });
-  let question = ` 
-  <div class="textquestiondiv questiondiv question-${questionNumber}"  >
+  let textquestion = ` 
+  <div class="textquestiondiv questiondiv">
        <form>
               <div class="form-group">
                  <input type="text" class="form-control" id="question" placeholder="Question">
@@ -167,12 +166,11 @@ function addTextQuestion(questionNumber) {
                     </div> 
             </form>
       </div>`;
-  $("#game_creator_container").append(question);
+  $("#game_creator_container").append(textquestion);
 }
 
 function addImageQuestion() {
-  let question = ` 
-    
+  let imagequestion = ` 
     <div class="imagequestiondiv questiondiv">
     <form>
         <div class="form-group">
@@ -205,11 +203,12 @@ function addImageQuestion() {
               </div> 
        </form>
 </div>`;
-  $("#game_creator_container").append(question);
+  $("#game_creator_container").append(imagequestion);
 }
 
 function addMatchQuestion() {
-  let question = ` 
+  let matchquestion = ` 
+
     <div class="matchquestiondiv questiondiv">
     <form> 
         <div class="form-group">
@@ -243,7 +242,7 @@ function addMatchQuestion() {
               </div> 
       </form>
     </div>`;
-  $("#game_creator_container").append(question);
+  $("#game_creator_container").append(matchquestion);
 }
 
 // EventListners
