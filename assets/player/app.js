@@ -1,23 +1,23 @@
 // Init Game State
-let game_state = {};
+let game_state = false;
+let isWaiting = false;
 
 //Init function
 (function () {
   //   _g3T-8KGI
-
   $("#join_room_button").on("click", function () {
     let room_id = $("#join_room_id").val();
     console.log(room_id);
     if (!room_id) return;
     // Gets game state and adds a Eventlistners
     db.ref(`/${room_id}`).on("value", (snapshot) => {
-      if (snapshot.val()) {
+      if (snapshot.val() && !game_state) {
         game_state = snapshot.val();
-        console.log(game_state);
         $(".join_room_form").remove();
-        // render_waiting_room();
-        render_player_form(game_state);
-        db.ref(`/${room_id}`).off();
+        render_player_form();
+        gameSetup();
+      } else if (snapshot.val()) {
+        game_state = snapshot.val();
       } else {
         alert("This game room does not exist");
       }
@@ -25,93 +25,117 @@ let game_state = {};
   });
 })();
 
-// Complete Avatar creation
-$(".avatar_picker_btn").on("click", function () {
-  let name = $(".waiting_room input#name").val();
-  // let name = $(".waiting_room input#name").val();
-  console.log({
-    name,
+const gameSetup = () => {
+  // Firebase EventListners
+  db.ref(`/${game_state.session_id}/players`).on("value", (snapshot) => {
+    if (!game_state.isPlaying && isWaiting) {
+      console.log("rendering waiting screen", snapshot.val());
+      render_waiting_room();
+    }
   });
-});
+};
 
 /// Componenet functions - That just render on screen
-
-/**
- *
- * @param {object} game_state
- */
-
-const render_waiting_room = (game_state) => {
-  let playersHTML = "";
-  let ContainerHTML = `       
+const render_waiting_room = () => {
+  let ContainerHTML = ` 
+  <div class="waiting_room">      
     <h2>Waiting for players to join ....</h2>
-    <div class="players_grid">
-      ${playersHTML}
-    </div>
-  `;
+    <div class="players_grid">`;
   game_state.players.forEach(({ name, avatar_uri }) => {
-    playersHTML += `
-    <div class="players_grid-item">
-      <img src="${avatar_uri}" alt="${name}" />
-      <p>${name}</p>
-    </div>
-  `;
+    ContainerHTML += `
+      <div class="players_grid-item">
+        <img src="${avatar_uri}" alt="${name}" />
+        <p>${name}</p>
+      </div>
+    `;
   });
-
+  ContainerHTML += `</div>
+  </div>`;
   // render waiting room
-  $(".game_container").html(ContainerHTML);
+  $(".game_container").empty().html(ContainerHTML);
 };
+
 const render_player_form = () => {
-  const avatar_picker = `
+  const data = [
+    {
+      name: "Frenchy",
+      uri: "./assets/img/avatars/Frenchy.png",
+    },
+    {
+      name: "Chick",
+      uri: "./assets/img/avatars/Chick.png",
+    },
+    {
+      name: "Butter",
+      uri: "./assets/img/avatars/Butter.png",
+    },
+    {
+      name: "Holly",
+      uri: "./assets/img/avatars/Holly.png",
+    },
+    {
+      name: "Lemy",
+      uri: "./assets/img/avatars/Lemy.png",
+    },
+    {
+      name: "Nicola",
+      uri: "./assets/img/avatars/Nicola.png",
+    },
+    {
+      name: "Pears",
+      uri: "./assets/img/avatars/Pears.png",
+    },
+    {
+      name: "Sal",
+      uri: "./assets/img/avatars/Sal.png",
+    },
+    {
+      name: "Berry",
+      uri: "./assets/img/avatars/Berry.png",
+    },
+  ];
+  let avatar_picker = `
   <div class="waiting_room">
-  <input type="text" name="name" id="name">
-  <h4>Choose an avatar</h4>
-  <div class="players_grid">
-  <div class="players_grid-item">
-    <img src="./assets/img/avatars/Frenchy.png" alt="Frenchy" />
-    <p>Frenchy</p>
-  </div>
-  <div class="players_grid-item">
-    <img src="./assets/img/avatars/Chick.png" alt="Chick" />
-    <p>Chick</p>
-  </div>
-  <div class="players_grid-item">
-    <img src="./assets/img/avatars/Butter.png" alt="Butter" />
-    <p>Butter</p>
-  </div>
-  <div class="players_grid-item">
-    <img src="./assets/img/avatars/Holly.png" alt="Holly" />
-    <p>Holly</p>
-  </div>
-  <div class="players_grid-item">
-    <img src="./assets/img/avatars/Lemy.png" alt="Lemy" />
-    <p>Lemy</p>
-  </div>
-  <div class="players_grid-item">
-    <img src="./assets/img/avatars/Nicola.png" alt="Nicola" />
-    <p>Nicola</p>
-  </div>
-  <div class="players_grid-item">
-    <img src="./assets/img/avatars/Pears.png" alt="Pears" />
-    <p>Pears</p>
-  </div>
-  <div class="players_grid-item">
-    <img src="./assets/img/avatars/Sal.png" alt="Sal" />
-    <p>Sal</p>
-  </div>
-  <div class="players_grid-item">
-    <img src="./assets/img/avatars/Berry.png" alt="Berry" />
-    <p>Berry</p>
-  </div>
-</div>
-<button class="avatar_picker_btn btn btn-warning">Next</button>
-</div>`;
+    <input type="text" name="name" id="name">
+    <h4>Choose an avatar</h4>
+    <div class="players_grid">
+    `;
+  data.forEach(({ name, uri }, i) => {
+    avatar_picker += `
+      <div class="players_grid-item players_grid-item-${i} " data-uri="${uri}">
+        <img src="${uri}" alt="${name}" />
+        <p>${name}</p>
+      </div>
+    `;
+  });
+  avatar_picker += `</div>
+    <button class="avatar_picker_btn btn btn-warning">Next</button>
+  </div>`;
+
   $(".game_container")
     .html(avatar_picker)
     .promise()
     .done(function () {
+      let avatar_uri;
+      let name;
       $(".players_grid").on("click", function (e) {
-        console.log(e.target);
+        let container = e.target.closest(".players_grid-item");
+        $(".players_grid img").removeClass("active");
+        container.classList.add("active");
+        avatar_uri = container.dataset.uri;
+      });
+
+      $("button.avatar_picker_btn").on("click", function () {
+        name = $("input#name").val();
+        addPlayerToFirebase({
+          avatar_uri,
+          name,
+          totalPoints: 0,
+        }).then(() => {
+          $(".game_container").empty();
+          isWaiting = true;
+          render_waiting_room();
+        });
       });
     });
 };
@@ -190,9 +214,14 @@ const QuestionComponent = () => {
   $(".game_container").append(question);
 };
 
+/**
+ *
+ * @param {object} player  An Object of player data
+ * @returns {promise}
+ */
+
 const addPlayerToFirebase = (player) => {
-  db.ref(`/${game_state.session_id}/players`).set([
-    ...game_state.players,
-    player,
-  ]);
+  return db
+    .ref(`/${game_state.session_id}/players`)
+    .set([...game_state.players, player]);
 };
