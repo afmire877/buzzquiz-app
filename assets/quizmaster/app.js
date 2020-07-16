@@ -143,14 +143,8 @@ function addTextQuestion() {
     timer: null, // {number} in seconds
     points: null, // Number
   });
-<<<<<<< Updated upstream
   let question = ` 
   <div class="textquestiondiv questiondiv question-${questionNumber}"  >
-=======
-
-  let textquestion = ` 
-  <div class="textquestiondiv questiondiv">
->>>>>>> Stashed changes
        <form>
               <div class="form-group">
                  <input type="text" class="form-control" id="question" placeholder="Question">
