@@ -1,6 +1,5 @@
 // Init Game State
 let game_state = false;
-let isWaiting = false;
 
 //Init function
 (function () {
@@ -103,37 +102,7 @@ const render_player_form = () => {
     },
   ];
   let avatar_picker = `    
-      <div class="row mt-5 px-3">
-        <div class="col">
-          <i class="fas fa-chevron-left"></i>
-        </div>
-      </div>
-      <div class="row mt-4 px-3">
-        <div class="col">
-          <h2>Profile creation</h2>
-        </div>
-      </div>
-      <div class="row mt-3 px-3">
-        <div class="col">
-        <h1>Choose your character!<h1>
-        </div>
-      </div>
-      <div class="row mt-3 px-3">
-        <div class="col">
-        <form>
-          <div class="form-group">
-            <h3 for="exampleInputEmail1" class="mb-3">Who are you?</h3>
-            <input type="text" class="form-control form-control-lg" id="name" aria-describedby="emailHelp" placeholder="John Smith">
-            <small id="emailHelp" class="form-text text-muted mt-3">Keep it clean people.</small>
-          </div>
-        </form>
-        </div>
-      </div>
-      <!-- four image-->
-      <div class="row mt-5 px-3 avatar-grid">
-      <div class="col-12 mb-4">
-        <h3 for="exampleInputEmail1" class="mb-3">Who speaks to your soul?</h3>
-      </div>`;
+  <div class="row mt-5 px-3"> <div class="col"> <i class="fas fa-chevron-left"></i> </div> </div> <div class="row mt-4 px-3"> <div class="col"> <h2>Profile creation</h2> </div> </div> <div class="row mt-3 px-3"> <div class="col"> <h1>Choose your character!<h1> </div> </div> <div class="row mt-3 px-3"> <div class="col"> <form> <div class="form-group"> <h3 for="exampleInputEmail1" class="mb-3">Who are you?</h3> <input type="text" class="form-control form-control-lg" id="name" aria-describedby="emailHelp" placeholder="John Smith"> <small id="emailHelp" class="form-text text-muted mt-3">Keep it clean people.</small> </div> </form> </div> </div> <!-- four image--> <div class="row mt-5 px-3 avatar-grid"> <div class="col-12 mb-4"> <h3 for="exampleInputEmail1" class="mb-3">Who speaks to your soul?</h3> </div>`;
 
   data.forEach(({ name, uri }, i) => {
     avatar_picker += ` 
@@ -144,12 +113,7 @@ const render_player_form = () => {
         `;
   });
 
-  avatar_picker += `</div>
-<div class="row mt-3 px-3">
-  <div class="col-12 mb-4 text-center">
-      <button class="btn btn-warning btn-lg avatar_picker_btn">Next</button>
-  </div>
-  </div>`;
+  avatar_picker += `</div><div class="row mt-3 px-3"> <div class="col-12 mb-4 text-center"> <button class="btn btn-warning btn-lg avatar_picker_btn">Next</button> </div> </div>`;
 
   $(".game_container")
     .html(avatar_picker)
@@ -162,7 +126,6 @@ const render_player_form = () => {
         $(".avatar-grid-item").removeClass("active");
         container.classList.add("active");
         avatar_uri = container.dataset.uri;
-        console.log(avatar_uri);
       });
 
       $("button.avatar_picker_btn").on("click", function () {
@@ -174,7 +137,7 @@ const render_player_form = () => {
         })
           .then(() => {
             $(".game_container").empty();
-            game_state.isWaiting = true;
+            updateIsWaiting(true);
             render_waiting_room();
             let index = game_state.players.length - 1;
             db.ref(`/${game_state.session_id}/players/${index}`)
