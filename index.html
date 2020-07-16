@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-    <link rel="stylesheet" href="assets/app.css" />
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="assets/app.css" />
+    
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-app.js"></script>
@@ -27,15 +28,21 @@
     <script defer src="./assets/init-firebase.js"></script>
   </head>
   <body>
-    <div class="jumbotron text-center">
-      <h1 class="display-4">Buzzquiz</h1>
+
+  <div class="text-center py-5">
+      <h1 class="display-4 header-start">Welcome to the fabulous <br><span class="buzz-font"> Buzzquiz </span></h1>
       <hr class="my-4" />
-      <p>What are you</p>
-      <a href="/player.html" class="btn btn-primary player-btn">Player</a>
-      <a href="/quizmaster.html" class="btn btn-warning quizmaster-btn"
-        >Quizmaster</a
-      >
-    </div>
+  </div> 
+
+   <div class="text-center py-5">
+      <p class="sub-header-start">What are you?</p>
+   </div>  
+
+  <div class="align-items-center">
+      <a href="/player.html" class="player-btn">Player</a>
+      <a href="/quizmaster.html" class="player-btn">Quizmaster</a>
+  </div>
+
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
