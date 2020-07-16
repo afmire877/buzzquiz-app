@@ -1,6 +1,10 @@
 
 .header-start {
-    font-size: 20px;
+    font-size: 30px;
+}
+
+.sub-header-start {
+  font-size: 26px;
 }
 
 .player-btn {
@@ -17,9 +21,14 @@
     border-radius: 35px;
     display: block;
     width: 300px;
-    font-family: TTnorms-Regular, "sans-serif";
+    font-family: TTNorms-Regular, sans-serif; 
+    font-size: 16px;
+    font-weight: bold;
     box-shadow: 4px 4px 8px #616060;
- 
+}
+
+.text-center {
+  padding: 20px;
 }
 
 .player-btn:hover {
