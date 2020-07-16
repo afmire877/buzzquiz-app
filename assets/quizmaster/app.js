@@ -22,14 +22,10 @@ function initQuizMaster() {
   });
 }
 
-<<<<<<< HEAD
 const submitQuizToFirebase = () => {
   // Grab all the questions
-  
   //
 };
-=======
->>>>>>> Commit changes lisa in app,js
 
 // initialState = {
 //     session_id: '', //  {string } UUID
@@ -137,18 +133,12 @@ const submitQuizToFirebase = () => {
 //   ],
 // };
 
-<<<<<<< HEAD
 function addTextQuestion(questionNumber) {
   question.push({
     id: questionNumber + 1,
   });
   let question = ` 
   <div class="textquestiondiv questiondiv question-${questionNumber}"  >
-=======
-function addTextQuestion() {
-  let textquestion = ` 
-  <div class="textquestiondiv questiondiv">
->>>>>>> Commit changes lisa in app,js
        <form>
               <div class="form-group">
                  <input type="text" class="form-control" id="question" placeholder="Question">
@@ -180,11 +170,7 @@ function addTextQuestion() {
 }
 
 function addImageQuestion() {
-<<<<<<< HEAD
   let question = ` 
-=======
-    let imagequestion = ` 
->>>>>>> Commit changes lisa in app,js
     
     <div class="imagequestiondiv questiondiv">
     <form>
@@ -218,19 +204,11 @@ function addImageQuestion() {
               </div> 
        </form>
 </div>`;
-<<<<<<< HEAD
   $("#game_creator_container").append(question);
 }
 
 function addMatchQuestion() {
   let question = ` 
-=======
-    $("#game_creator_container").append(imagequestion);
-  }
-
-  function addMatchQuestion() {
-    let matchquestion = ` 
->>>>>>> Commit changes lisa in app,js
     <div class="matchquestiondiv questiondiv">
     <form> 
         <div class="form-group">
@@ -264,13 +242,8 @@ function addMatchQuestion() {
               </div> 
       </form>
     </div>`;
-<<<<<<< HEAD
   $("#game_creator_container").append(question);
 }
-=======
-    $("#game_creator_container").append(matchquestion);
-  }
->>>>>>> Commit changes lisa in app,js
 
 // EventListners
 
