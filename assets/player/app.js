@@ -33,6 +33,9 @@ const gameSetup = () => {
       render_waiting_room();
     }
   });
+  db.ref(`/${game_state.session_id}`).on("value", (snapshot) =>
+    snapshot.val() ? (game_state = snapshot.val()) : null
+  );
 };
 
 /// Componenet functions - That just render on screen
