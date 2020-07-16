@@ -234,6 +234,7 @@ const QuestionComponent = () => {
  */
 
 const addPlayerToFirebase = (player) => {
+  if (!Array.isArray(game_state.players)) game_state.players = [];
   return db
     .ref(`/${game_state.session_id}/players`)
     .set([...game_state.players, player]);
