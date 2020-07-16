@@ -12,9 +12,9 @@
 .waiting_room h2 {
     text-align: center;
 }
-.players_grid-item {
+.avatar-grid-item {
     transition: all 0.3s ease-in-out;
 }
-.players_grid-item.active {
+.avatar-grid-item.active {
     transform: scale(1.5);
 }

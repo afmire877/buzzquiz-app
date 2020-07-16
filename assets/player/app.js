@@ -102,22 +102,53 @@ const render_player_form = () => {
       uri: "./assets/img/avatars/Berry.png",
     },
   ];
-  let avatar_picker = `
-  <div class="waiting_room">
-    <input type="text" name="name" id="name">
-    <h4>Choose an avatar</h4>
-    <div class="players_grid">
-    `;
-  data.forEach(({ name, uri }, i) => {
-    avatar_picker += `
-      <div class="players_grid-item players_grid-item-${i} " data-uri="${uri}">
-        <img src="${uri}" alt="${name}" />
-        <p>${name}</p>
+  let avatar_picker = `    
+      <div class="row mt-5 px-3">
+        <div class="col">
+          <i class="fas fa-chevron-left"></i>
+        </div>
       </div>
-    `;
+      <div class="row mt-4 px-3">
+        <div class="col">
+          <h2>Profile creation</h2>
+        </div>
+      </div>
+      <div class="row mt-3 px-3">
+        <div class="col">
+        <h1>Choose your character!<h1>
+        </div>
+      </div>
+      <div class="row mt-3 px-3">
+        <div class="col">
+        <form>
+          <div class="form-group">
+            <h3 for="exampleInputEmail1" class="mb-3">Who are you?</h3>
+            <input type="text" class="form-control form-control-lg" id="name" aria-describedby="emailHelp" placeholder="John Smith">
+            <small id="emailHelp" class="form-text text-muted mt-3">Keep it clean people.</small>
+          </div>
+        </form>
+        </div>
+      </div>
+      <!-- four image-->
+      <div class="row mt-5 px-3 avatar-grid">
+      <div class="col-12 mb-4">
+        <h3 for="exampleInputEmail1" class="mb-3">Who speaks to your soul?</h3>
+      </div>`;
+
+  data.forEach(({ name, uri }, i) => {
+    avatar_picker += ` 
+    <div class="col-4 mb-4 text-center players-${i} avatar-grid-item" data-uri="${uri}">
+        <img src="${uri}" width="100%" class="rounded-circle"/>
+        <h3 class="mt-3">${name}</h3>
+    </div>
+        `;
   });
+
   avatar_picker += `</div>
-    <button class="avatar_picker_btn btn btn-warning">Next</button>
+<div class="row mt-3 px-3">
+  <div class="col-12 mb-4 text-center">
+      <button class="btn btn-warning btn-lg avatar_picker_btn">Next</button>
+  </div>
   </div>`;
 
   $(".game_container")
@@ -126,11 +157,12 @@ const render_player_form = () => {
     .done(function () {
       let avatar_uri;
       let name;
-      $(".players_grid").on("click", function (e) {
-        let container = e.target.closest(".players_grid-item");
-        $(".players_grid img").removeClass("active");
+      $(".avatar-grid").on("click", function (e) {
+        let container = e.target.closest(".avatar-grid-item");
+        $(".avatar-grid-item").removeClass("active");
         container.classList.add("active");
         avatar_uri = container.dataset.uri;
+        console.log(avatar_uri);
       });
 
       $("button.avatar_picker_btn").on("click", function () {
@@ -139,15 +171,17 @@ const render_player_form = () => {
           avatar_uri,
           name,
           totalPoints: 0,
-        }).then(() => {
-          $(".game_container").empty();
-          game_state.isWaiting = true;
-          render_waiting_room();
-          let index = game_state.players.length - 1;
-          db.ref(`/${game_state.session_id}/players/${index}`)
-            .onDisconnect()
-            .remove();
-        });
+        })
+          .then(() => {
+            $(".game_container").empty();
+            game_state.isWaiting = true;
+            render_waiting_room();
+            let index = game_state.players.length - 1;
+            db.ref(`/${game_state.session_id}/players/${index}`)
+              .onDisconnect()
+              .remove();
+          })
+          .catch((e) => console.log(e));
       });
     });
 };

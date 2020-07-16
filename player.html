@@ -52,55 +52,117 @@
     <title>Buzzquizz</title>
 
     <style>
-
-
-         body { font-family: TTNorms-Regular, sans-serif;  }
-      strong, .bold { font-family: TTNorms-Bold, sans-serif; font-weight: bold; }
-
-      h1 {font-size: 75px;}
-      h2 {font-size: 35px;}
-
-
-        .container {max-width: 770px;}
-
-        .answer {background-color: #F0F0F0; border-radius: 50px 50px 0 0; padding: 50px 25px; margin-top: 20px; font-size: 25px; font-weight: bold;}
-        .answer button { background-color :#fff; border: none; border-radius: 50px; padding: 15px; width: 100%; float: left; display: block; margin-bottom: 20px; text-align: left; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);}
-
-        .answer .selected {box-shadow: 0px 30px 10px rgba(0, 0, 0, 0.1);}
-        .answer .selected .number { background-color: yellow; color: #000;}
-        .answer .correct {background-color: #6ACC4F; color: #fff;}
-
-        .number {width: 50px; height: 50px; border-radius: 50px; color: #fff; background-color: #000; display: block; padding: 5px 0; float: left; text-align: center; margin-right: 20px;}
-        .answer p {margin: 0; margin-top: 7px; font-family: TTNorms-Bold, sans-serif; font-weight: bold;}
-
-        hr {width: 50%; display: block; float: left;}
-
-        hr {
-          margin-top: 1.5px;
-          margin-bottom: 0;
-          border: 0;
-          border-top: 2px solid rgba(0,0,0,1);
-
+      body {
+        font-family: TTNorms-Regular, sans-serif;
+      }
+      strong,
+      .bold {
+        font-family: TTNorms-Bold, sans-serif;
+        font-weight: bold;
       }
 
-      hr.selected {margin-top: 0; border-top: 5px solid rgba(0,0,0,1); border-radius: 50px}
+      h1 {
+        font-size: 75px;
+      }
+      h2 {
+        font-size: 35px;
+      }
 
-      .center-div {margin-left: calc(50% - 30px);!important; display: block;}
-      .game_container {
+      .container {
+        max-width: 770px;
+      }
+
+      .answer {
+        background-color: #f0f0f0;
+        border-radius: 50px 50px 0 0;
+        padding: 50px 25px;
+        margin-top: 20px;
+        font-size: 25px;
+        font-weight: bold;
+      }
+      .answer button {
+        background-color: #fff;
+        border: none;
+        border-radius: 50px;
+        padding: 15px;
+        width: 100%;
+        float: left;
+        display: block;
+        margin-bottom: 20px;
+        text-align: left;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .answer .selected {
+        box-shadow: 0px 30px 10px rgba(0, 0, 0, 0.1);
+      }
+      .answer .selected .number {
+        background-color: yellow;
+        color: #000;
+      }
+      .answer .correct {
+        background-color: #6acc4f;
+        color: #fff;
+      }
+
+      .number {
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+        color: #fff;
+        background-color: #000;
+        display: block;
+        padding: 5px 0;
+        float: left;
+        text-align: center;
+        margin-right: 20px;
+      }
+      .answer p {
+        margin: 0;
+        margin-top: 7px;
+        font-family: TTNorms-Bold, sans-serif;
+        font-weight: bold;
+      }
+
+      hr {
+        width: 50%;
+        display: block;
+        float: left;
+      }
+
+      hr {
+        margin-top: 1.5px;
+        margin-bottom: 0;
+        border: 0;
+        border-top: 2px solid rgba(0, 0, 0, 1);
+      }
+
+      hr.selected {
+        margin-top: 0;
+        border-top: 5px solid rgba(0, 0, 0, 1);
+        border-radius: 50px;
+      }
+
+      .center-div {
+        margin-left: calc(50% - 30px) !important;
+        display: block;
+      }
+      /* .game_container {
         height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
-      }
+      } */
       .join_room_form {
-
+        display: grid;
+        place-items: center;
+        grid-template-rows: 100vh;
       }
       .players_grid {
         display: grid;
         margin-top: 100px;
         grid-template-columns: repeat(auto-fill, 130px);
         grid-row-gap: 30px;
-        /* grid-template-rows: ; */
         justify-content: center;
       }
       .players_grid-item {
@@ -109,7 +171,7 @@
         justify-content: center;
         align-items: center;
       }
-      .players_grid-item img{
+      .players_grid-item img {
         height: 60px;
       }
       .waiting_room {
@@ -120,9 +182,13 @@
   <body>
     <div class="container game_container">
       <div class="join_room_form">
-        <h2>Enter room ID</h2>
-        <input type="text" name="room_id" id="join_room_id" />
-        <button id="join_room_button" class="btn btn-warning">Join Room</button>
+        <div class="join_room_form_inner">
+          <h2>Enter room ID</h2>
+          <input type="text" name="room_id" id="join_room_id" />
+          <button id="join_room_button" class="btn btn-warning">
+            Join Room
+          </button>
+        </div>
       </div>
     </div>
     <!-- Optional JavaScript -->
