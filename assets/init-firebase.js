@@ -23,3 +23,11 @@ const updateRoomFirebase = () => {};
 const removeRoomFromFirebase = (id) => {
   db.ref(`/${id}`).remove();
 };
+
+const updateState = (newState) => {
+  return db.ref(`/${game_state.session_id}`).set(newState);
+};
+
+const updateIsWaiting = (value) => {
+  return db.ref(`/${game_state.session_id}/isWating`).set(value);
+};

@@ -13,6 +13,7 @@ let isWaiting = false;
     db.ref(`/${room_id}`).on("value", (snapshot) => {
       if (snapshot.val() && !game_state) {
         game_state = snapshot.val();
+        console.log(game_state);
         $(".join_room_form").remove();
         render_player_form();
         gameSetup();
@@ -28,10 +29,8 @@ let isWaiting = false;
 const gameSetup = () => {
   // Firebase EventListners
   db.ref(`/${game_state.session_id}/players`).on("value", (snapshot) => {
-    if (!game_state.isPlaying && isWaiting) {
-      console.log("rendering waiting screen", snapshot.val());
-      render_waiting_room(snapshot.val());
-    }
+    const { isPlaying, isWaiting } = game_state;
+    if (!isPlaying && isWaiting) render_waiting_room(snapshot.val());
   });
   db.ref(`/${game_state.session_id}`).on("value", (snapshot) =>
     snapshot.val() ? (game_state = snapshot.val()) : null
@@ -142,7 +141,7 @@ const render_player_form = () => {
           totalPoints: 0,
         }).then(() => {
           $(".game_container").empty();
-          isWaiting = true;
+          game_state.isWaiting = true;
           render_waiting_room();
           let index = game_state.players.length - 1;
           db.ref(`/${game_state.session_id}/players/${index}`)
