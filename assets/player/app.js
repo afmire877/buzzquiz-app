@@ -30,7 +30,7 @@ const gameSetup = () => {
   db.ref(`/${game_state.session_id}/players`).on("value", (snapshot) => {
     if (!game_state.isPlaying && isWaiting) {
       console.log("rendering waiting screen", snapshot.val());
-      render_waiting_room();
+      render_waiting_room(snapshot.val());
     }
   });
   db.ref(`/${game_state.session_id}`).on("value", (snapshot) =>
@@ -39,12 +39,18 @@ const gameSetup = () => {
 };
 
 /// Componenet functions - That just render on screen
-const render_waiting_room = () => {
+const render_waiting_room = (playersArray = null) => {
+  let players;
+  if (playersArray !== null) {
+    players = playersArray;
+  } else {
+    players = game_state.players;
+  }
   let ContainerHTML = ` 
   <div class="waiting_room">      
     <h2>Waiting for players to join ....</h2>
     <div class="players_grid">`;
-  game_state.players.forEach(({ name, avatar_uri }) => {
+  players.forEach(({ name, avatar_uri }) => {
     ContainerHTML += `
       <div class="players_grid-item">
         <img src="${avatar_uri}" alt="${name}" />
