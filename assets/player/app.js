@@ -144,6 +144,10 @@ const render_player_form = () => {
           $(".game_container").empty();
           isWaiting = true;
           render_waiting_room();
+          let index = game_state.players.length - 1;
+          db.ref(`/${game_state.session_id}/players/${index}`)
+            .onDisconnect()
+            .remove();
         });
       });
     });
