@@ -6,19 +6,18 @@ function initQuizMaster() {
   // Redirect to quizmaster.html
 
   $(".add_textquestion").on("click", function () {
-    console.log("yolo");
-    questions.length;
-    addTextQuestion(questions.length);
+    console.log("text");
+    addTextQuestion();
   });
 
   $(".add_imagequestion").on("click", function () {
-    console.log("yolo1");
-    addImageQuestion(questions.length);
+    console.log("image");
+    addImageQuestion();
   });
 
   $(".add_matchquestion").on("click", function () {
-    console.log("yolo2");
-    addMatchQuestion(questions.length);
+    console.log("match");
+    addMatchQuestion();
   });
 }
 
@@ -133,12 +132,25 @@ const submitQuizToFirebase = () => {
 //   ],
 // };
 
-function addTextQuestion(questionNumber) {
-  question.push({
-    id: questionNumber + 1,
+function addTextQuestion() {
+  questions.push({
+    id: shortid.generate(), // {string} for ref
+    type: "text", // {string} Avalible types: "Image", "text", "match"
+    question: null,
+    correctAns: null, // {string}
+    options: [],
+    hasTimer: true, //  {boolean}
+    timer: null, // {number} in seconds
+    points: null, // Number
   });
+<<<<<<< Updated upstream
   let question = ` 
   <div class="textquestiondiv questiondiv question-${questionNumber}"  >
+=======
+
+  let textquestion = ` 
+  <div class="textquestiondiv questiondiv">
+>>>>>>> Stashed changes
        <form>
               <div class="form-group">
                  <input type="text" class="form-control" id="question" placeholder="Question">

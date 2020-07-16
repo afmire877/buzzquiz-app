@@ -83,7 +83,7 @@ h3 {
 .questiondiv {
   margin-top: 40px;
 }
-
+/* 
 .textquestiondiv {
   display: none;
 }
@@ -94,7 +94,7 @@ h3 {
 
 .matchquestiondiv {
   display: none;
-}
+} */
 
 a:active {
   background-color: yellow;
@@ -115,3 +115,11 @@ a:active {
   display: inline-block;
 }
 
+
+/* {
+  max-height: 100px;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in;
+    max-height: fit-content;
+
+} */
