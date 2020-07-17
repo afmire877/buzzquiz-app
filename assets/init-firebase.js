@@ -29,5 +29,5 @@ const updateState = (newState) => {
 };
 
 const updateIsWaiting = (value) => {
-  return db.ref(`/${game_state.session_id}/isWating`).set(value);
+  return db.ref(`/${game_state.session_id}/isWaiting`).set(value);
 };
