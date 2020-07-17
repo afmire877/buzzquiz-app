@@ -1,6 +1,6 @@
 // Init Game State
 let game_state = false;
-
+let clientPlayer = false;
 //Init function
 (function () {
   //   _g3T-8KGI
@@ -29,7 +29,8 @@ const gameSetup = () => {
   // Firebase EventListners
   db.ref(`/${game_state.session_id}/players`).on("value", (snapshot) => {
     const { isPlaying, isWaiting } = game_state;
-    if (!isPlaying && isWaiting) render_waiting_room(snapshot.val());
+    if (!isPlaying && isWaiting && clientPlayer)
+      render_waiting_room(snapshot.val());
   });
   db.ref(`/${game_state.session_id}`).on("value", (snapshot) =>
     snapshot.val() ? (game_state = snapshot.val()) : null
@@ -130,11 +131,13 @@ const render_player_form = () => {
 
       $("button.avatar_picker_btn").on("click", function () {
         name = $("input#name").val();
-        addPlayerToFirebase({
+        clientPlayer = {
           avatar_uri,
           name,
           totalPoints: 0,
-        })
+        };
+
+        addPlayerToFirebase(clientPlayer)
           .then(() => {
             $(".game_container").empty();
             updateIsWaiting(true);
