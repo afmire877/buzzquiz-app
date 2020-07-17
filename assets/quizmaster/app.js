@@ -133,8 +133,10 @@ const submitQuizToFirebase = () => {
 // };
 
 function addTextQuestion() {
+  let id = Date.now();
+  let index = questions.length;
   questions.push({
-    id: shortid.generate(), // {string} for ref
+    id, // {string} for ref
     type: "text", // {string} Avalible types: "Image", "text", "match"
     question: null,
     correctAns: null, // {string}
@@ -144,35 +146,59 @@ function addTextQuestion() {
     points: null, // Number
   });
   let question = ` 
-  <div class="textquestiondiv questiondiv question-${questionNumber}"  >
+  <div class="textquestiondiv questiondiv question-${id} ${index}"  >
+        <h3>${questions[index]?.question || "Question"}</h3>
        <form>
               <div class="form-group">
-                 <input type="text" class="form-control" id="question" placeholder="Question">
+                 <input type="text" class="form-control text-question" id="question" placeholder="Question">
               </div>
-              <div class="form-group">
-                  <input type="text" class="form-control" id="correctanswer" placeholder="Correct answer">
+
+               <div class="form-group">
+               <label class="text-left d-block"> Option 1 </label>
+                  <input type="text" class="form-control option option-1 "  data-option="1" id="otheranswer1" placeholder="Answer option 1">
                </div>
                <div class="form-group">
-                  <input type="text" class="form-control" id="otheranswer1" placeholder="Add another answer 1">
+               <label class="text-left d-block"> Option 2 </label>
+                  <input type="text" class="form-control option option-2" data-option="2" id="otheranswer2" placeholder="Answer option 2">
                </div>
                <div class="form-group">
-                  <input type="text" class="form-control" id="otheranswer2" placeholder="Add another answer 2">
+                <label class="text-left d-block"> Option 3 </label>
+                  <input type="text" class="form-control option option-3" data-option="3" id="otheranswer3" placeholder="Answer option 3">
                </div>
                <div class="form-group">
-                  <input type="text" class="form-control" id="otheranswer3" placeholder="Add another answer 3">
-               </div>
+                <input type="number" class="form-control correctAns" id="correctanswer" placeholder="Enter the option Number  1 - 3" min="1" max="3" >
+              </div>
                <div class="col-auto my-1">
                       <label class="mr-sm-2" for="selecttime">set time</label>
                       <select class="custom-select mr-sm-2" id="selecttime">
                         <option selected>Set time</option>
-                        <option value="1">5 sec</option>
-                        <option value="2">10 sec</option>
-                        <option value="3">15 sec</option>
+                        <option value="5">5 sec</option>
+                        <option value="10">10 sec</option>
+                        <option value="15">15 sec</option>
                       </select>
                     </div> 
             </form>
       </div>`;
-  $("#game_creator_container").append(textquestion);
+  $("#game_creator_container")
+    .append(question)
+    .promise()
+    .done(function () {
+      // Event listners  "change" on all inputs to add to questions
+      $(`.question-${id} .text-question`).on("change", function () {
+        questions[index].question = $(this).val();
+      });
+      $(`.question-${id} .correctAns`).on("change", function () {
+        questions[index].correctAns = $(this).val();
+      });
+
+      $(`.question-${id} .option`).on("change", function () {
+        let option = $(this).attr("data-option");
+        questions[index].options[option - 1] = $(this).val();
+      });
+      $(`.question-${id} #selecttime`).on("change", function () {
+        questions[index].timer = $(this).val();
+      });
+    });
 }
 
 function addImageQuestion() {
