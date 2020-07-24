@@ -12,7 +12,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    padding: 40px 30px 40px 20px;
+    padding: 40px 15px 40px 20px;
     text-align: right;
     margin: 0 auto;
     margin-top: 20px;
@@ -35,4 +35,120 @@
   text-decoration: none;
   color: black;
 
+}
+
+.bubbles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width:100%;
+  height:100%;
+  z-index: 0;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.bubbles li {
+  position: absolute;
+  list-style: none;
+  display: block;
+  border-radius: 9999px;
+  background-color: #FFDD00;
+  -webkit-animation: circles 20s infinite;
+  animation: circles 20s infinite;
+  -webkit-transition-timing-function: linear;
+  transition-timing-function: linear;
+}
+
+.bubbles li:nth-child(1) {
+  width: 280px;
+  height: 280px;
+  top: 300px;
+  left: 10%;
+}
+.bubbles li:nth-child(2) {
+  width: 60px;
+  height: 60px;
+  left: 35%;
+  -webkit-animation-delay: 2s;
+  animation-delay: 2s;
+  -webkit-animation-duration: 17s;
+  animation-duration: 17s;
+}
+
+.bubbles li:nth-child(3) {
+  width: 110px;
+  height: 110px;
+  top: 600px;
+  left: 65%;
+  -webkit-animation-delay: 4s;
+  animation-delay: 4s;
+  -webkit-animation-duration: 13s;
+  animation-duration: 13s;
+}
+
+.bubbles li:nth-child(4) {
+  width: 180px;
+  height: 180px;
+  top: 100px;
+  left: 80%;
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
+  -webkit-animation-duration: 22s;
+  animation-duration: 22s;
+}
+
+.bubbles li:nth-child(5) {
+  width: 150px;
+  height: 150px;
+  left: 60%;
+  -webkit-animation-delay: 7s;
+  animation-delay: 7s;
+  -webkit-animation-duration: 12s;
+  animation-duration: 12s;
+}
+
+.bubbles li:nth-child(5) {
+animation: float 16s ease-in-out infinite;
+}
+.bubbles li:nth-child(4) {
+animation: float 12s ease-in-out infinite;
+}
+.bubbles li:nth-child(3) {
+animation: float2 14s ease-in-out infinite;
+}
+
+.bubbles li:nth-child(2) {
+animation: float 10s ease-in-out infinite;
+}
+
+.bubbles li:nth-child(1) {
+animation: float2 16s ease-in-out infinite;
+}
+
+
+
+@keyframes float {
+0% {
+  transform: translatey(-45px);
+}
+50% {
+  transform: translatey(75px);
+}
+100% {
+  transform: translatey(-45px);
+}
+}
+
+
+@keyframes float2 {
+0% {
+  transform: translatey(45px);
+}
+50% {
+  transform: translatey(-45px);
+}
+100% {
+  transform: translatey(45px);
+}
 }
