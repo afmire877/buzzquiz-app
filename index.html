@@ -14,12 +14,8 @@
     <link rel="stylesheet" href="assets/app.css" />
     
        <!-- TT norms -->
-       <link
-       rel="stylesheet"
-       type="text/css"
-       href="https://buzzbar.co/assets/tt-norms.css"
-       rel="preload"
-     />
+ 
+       <link rel="stylesheet" type="text/css" href="https://assets.buzzbar.co/tt-norms.css">
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-app.js"></script>
@@ -36,27 +32,36 @@
   </head>
   <body>
 
-  <div class="text-center py-5">
-      <h1 class="display-4 header-start">Welcome to the fabulous</h1>
-      <h2><span class="buzz-font"> Buzzquiz </span></h2>
-  </div> 
+    <div class="background">
+      <ul class="bubbles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
 
-   <div class="text-center">
-      <p class="sub-header-start">What are you?</p>
-   </div>  
+      <div class="text-center py-5">
+          <h1 class="display-4 header-start">Welcome to the fabulous</h1>
+          <h2><span class="buzz-font"> Buzzquiz </span></h2>
+      </div> 
 
-  <div class="align-items-center">
-      <a href="/player.html" class="player-btn">Player</a>
-      <a href="/quizmaster.html" class="player-btn">Quizzzmaster</a>
-  </div>
+      <div class="text-center">
+          <p class="sub-header-start">What are you?</p>
+      </div>  
 
-  <ul class="bubbles">
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-</ul>
+      <div class="align-items-center buttons-select">
+          <a href="/player.html" class="player-btn">Player</a>
+          <a href="/quizmaster.html" class="player-btn">Quizzzmaster</a>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <h6 class="small-sub"> If you think this homescreen ain't fabulous (or you just hate games), then leave immediately. </h6>
+    </div> 
 
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
