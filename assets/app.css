@@ -20,12 +20,12 @@ body {
   font-size: 26px;
 }
 
-.player-btn {
+.player-btn, .qm-btn {
     background-image: url("/assets/img/background-playerbtn.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    padding: 40px 15px 40px 20px;
+    padding: 30px 15px 30px 20px;
     text-align: right;
     margin: 0 auto;
     margin-top: 20px;
