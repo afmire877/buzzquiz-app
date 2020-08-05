@@ -54,7 +54,7 @@ body {
 }
 
 
-.player-btn:hover {
+.player-btn:hover, .qm-btn:hover {
   position: relative;
   text-decoration: none;
   color: black;
