@@ -23,12 +23,19 @@
     <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
 
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.1/lottie.min.js" integrity="sha512-bydaxcpHiWGaIdaqCwrSYIXjj4xRh4P1C3BE+AdJUgYAKAhEWeAt5GzDgeYdLT+MGBYeLPJf7cTz4llPwwdk+A==" crossorigin="anonymous"></script>
+     <script src="https://cdnjs.com/libraries/bodymovin" type="text/javascript"></script>
+
+
     <script
       defer
       src="https://www.gstatic.com/firebasejs/7.15.0/firebase-database.js"
     ></script>
     <script src="https://unpkg.com/shortid-dist@1.0.5/dist/shortid-2.2.13.min.js"></script>
     <script defer src="./assets/init-firebase.js"></script>
+
+
+
   </head>
   <body>
 
@@ -44,14 +51,13 @@
         <li></li>
       </ul>
 
-      <div class="text-center py-5">
+      <div class="text-center pt-3">
           <h1 class="display-4 header-start">Welcome to the fabulous</h1>
-          <h2><span class="buzz-font"> Buzzquiz </span></h2>
+          <div id="lottie"></div>
       </div> 
 
-      <div class="text-center">
-          <p class="sub-header-start">What are you?</p>
-      </div>  
+          <p class="sub-header-start text-center">What are you?</p>
+   
 
       <div class="align-items-center buttons-select">
           <a href="/player.html" class="player-btn">Player</a>
