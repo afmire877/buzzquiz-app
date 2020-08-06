@@ -11,11 +11,47 @@
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
     />
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+          https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script
+      defer
+      src="https://www.gstatic.com/firebasejs/7.15.0/firebase-database.js"
+    ></script>
+    <script
+      defer
+      src="https://www.gstatic.com/firebasejs/7.15.0/firebase-storage.js"
+    ></script>
+    <script src="https://unpkg.com/shortid-dist@1.0.5/dist/shortid-2.2.13.min.js"></script>
+    <script defer src="./assets/init-firebase.js"></script>
     <link type="text/css" rel="stylesheet" href="assets/quizmaster/app.css" />
+    <script src="./assets/timer.min.js"></script>
   </head>
 
   <body>
-    <div id="game_creator_container"></div>
+    <div id="game_creator_container">
+      <div class="join_room_form">
+        <div class="join_room_form_inner">
+          <h2>Enter you have created room</h2>
+          <input type="text" name="room_id" id="join_room_id" />
+          <button id="join_room_button" class="btn btn-warning">
+            Join Room
+          </button>
+        </div>
+      </div>
+      <div>
+        <h1>Timer: <span class="timer"></span></h1>
+      </div>
+      <div class="players_list">
+        <ul></ul>
+      </div>
+
+      <button class="start_game_btn btn btn-primary">Start Game</button>
+      <button class="reset_game_btn btn btn-warning">Reset Game</button>
+    </div>
 
     <div class="buttonsection">
       <!--- This section should be pushed down when you click on one of these buttons -->

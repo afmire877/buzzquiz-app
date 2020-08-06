@@ -11,11 +11,10 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const db = firebase.database();
+const storage = firebase.storage();
 
-const createRoomFirebase = (id) => {
-  db.ref(`/${id}`).set({
-    new: "hell",
-  });
+const createRoomFirebase = (id, game_state) => {
+  return db.ref(`/${id}`).set(game_state);
 };
 // update state in Firebase
 const updateRoomFirebase = () => {};
