@@ -31,9 +31,13 @@ const gameSetup = async () => {
   const { session_id } = game_state;
   // Firebase EventListners
   db.ref(`/${session_id}/players`).on("value", (snapshot) => {
-    const { isPlaying, isWaiting } = game_state;
+    const { isPlaying, isWaiting, gameEnded } = game_state;
     if (!isPlaying && isWaiting && clientPlayer)
       render_waiting_room(snapshot.val());
+
+    if (gameEnded) {
+      // rerender the leaderboard
+    }
   });
   db.ref(`/${session_id}`).on("value", (snapshot) =>
     snapshot.val() ? (game_state = snapshot.val()) : null
@@ -48,6 +52,18 @@ const gameSetup = async () => {
     questions.forEach((q) => (q.style.display = "none"));
     document.querySelector(`.question-${snapshot.val()}`).style.display =
       "block";
+  });
+  db.ref(`/${session_id}/timeLeft`).on("value", (snapshot) => {
+    let time = snapshot.val();
+
+    if (time && time >= 1) {
+      $(".timer_circle").addClass(`p${time * 10}`);
+    } else {
+      $(".timer_circle").addClass(`p0`);
+    }
+  });
+  db.ref(`/${game_state.session_id}/gameEnded`).on("value", (snapshot) => {
+    if (snapshot.val()) endOfGame();
   });
 };
 
@@ -145,10 +161,13 @@ const render_player_form = () => {
 
       $("button.avatar_picker_btn").on("click", function () {
         name = $("input#name").val();
+        let playerID = "p-" + Math.floor(Math.random() * Date.now());
+        let index = game_state.players?.length || 0;
         clientPlayer = {
           avatar_uri,
           name,
           totalPoints: 0,
+          index,
         };
 
         addPlayerToFirebase(clientPlayer)
@@ -156,7 +175,6 @@ const render_player_form = () => {
             $(".game_container").empty();
             updateIsWaiting(true);
             render_waiting_room();
-            let index = game_state.players.length - 1;
             db.ref(`/${game_state.session_id}/players/${index}`)
               .onDisconnect()
               .remove();
@@ -166,9 +184,7 @@ const render_player_form = () => {
       db.ref(`/${game_state.session_id}/isWaiting`).on("value", (snapshot) => {
         console.log(snapshot.val());
         let isWaiting = snapshot.val();
-        if (!isWaiting) {
-          loadQuestions();
-        }
+        if (!isWaiting) loadQuestions();
       });
     });
 };
@@ -179,7 +195,7 @@ const render_questions = () => {
     const { question, options, timer, type, image_url } = item;
 
     html += `
-    <div class="container question_component question-${i} ${i}" style="display:${
+    <div id="${i}" class="container question_component question-${i} ${i}" style="display:${
       i === game_state.currentQIndex ? "block" : "none"
     }">
     <!-- breadcrumbs -->
@@ -230,7 +246,9 @@ const render_questions = () => {
     <div class="row mt-3">
       <div class="col answer">`;
     options.forEach((answer, i) => {
-      html += `<button data-value="${answer}"><div class="number">${lettersArray[i]}</div> <p>${answer}</p></button>`;
+      html += `<button data-value="${i + 1}"><div class="number">${
+        lettersArray[i]
+      }</div> <p>${answer}</p></button>`;
     });
     // class correct for green.
     // class Selected for when clicked
@@ -240,8 +258,8 @@ const render_questions = () => {
     <div class="row">
           <div class="col mt-4">
             <div class="center-div">
-              <div class="c100 p0 small black">
-                    <span>${timer}</span>
+              <div class="c100 p0 small black timer_circle">
+                    <span class="timer_numnber">${timer}</span>
                     <div class="slice">
                         <div class="bar"></div>
                         <div class="fill"></div>
@@ -276,6 +294,57 @@ const render_questions = () => {
     });
 };
 
+const render_result_page = () => {
+  $(".game_container").empty();
+  let html = `
+  <div class="row px-3 pt-5 banner">
+    <div class="col text-center">
+     <h2 class="bold">Results<h2>
+    </div>
+  </div>
+  <div class="row mt-3 px-3 mb-3 ">
+    <div class="col text-center">
+    <h1 class="bold">The results are as follows<h1>
+    </div>
+  </div>
+  <div class="leaderboard_listing"></div>
+`;
+
+  $(".game_container")
+    .append(html)
+    .promise()
+    .done(function () {
+      setTimeout(() => {
+        render_leaderboard();
+      }, 5000);
+    });
+};
+
+const render_leaderboard = () => {
+  $(".leaderboard_listing").empty();
+  let html = "";
+  let leaderboard = [...game_state.players]
+    .sort((a, b) => a.totalPoints + b)
+    .reverse();
+  console.log(leaderboard);
+  leaderboard.forEach(({ name, avatar_uri, totalPoints }, i) => {
+    html += `
+    <div class="row align-items-center ${i === 0 ? "winner" : ""} mb-3">
+    <div class="col text-center">
+      <img src="${avatar_uri}" class="profile">
+    </div>
+    <div class="col text-center">
+      <h3 class="bold">${name}<h3>
+    </div>
+    <div class="col text-right">
+      <h3 class="mb-0 bold">${totalPoints}pts</h3>
+    </div>
+  </div>`;
+  });
+
+  $(".leaderboard_listing").html(html);
+};
+
 /**
  *
  * @param {object} player  An Object of player data
@@ -292,4 +361,26 @@ const addPlayerToFirebase = (player) => {
 const loadQuestions = () => {
   $(".game_container").empty();
   render_questions();
+};
+
+const endOfGame = () => {
+  calculateScore();
+  render_result_page();
+};
+
+const calculateScore = () => {
+  let playerID = clientPlayer.index;
+
+  $("button.selected").each(function () {
+    const { quizData, players, session_id } = game_state;
+    let questionID = $(this).closest(".question_component").attr("id");
+    let questionPoints = quizData[questionID].points;
+    let selectedQuestion = parseInt($(this).attr("data-value"));
+    if (selectedQuestion === quizData[questionID].correctAns) {
+      console.log(players[playerID].totalPoints + questionPoints);
+      db.ref(`/${session_id}/players/${playerID}/totalPoints`).set(
+        players[playerID].totalPoints + questionPoints
+      );
+    }
+  });
 };

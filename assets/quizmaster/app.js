@@ -10,7 +10,8 @@ let game_state = {
 const timer = new Timer({
   tick: 1,
   ontick: function (ms) {
-    console.log(ms + " milliseconds left");
+    console.log(Math.round(ms / 1000));
+    db.ref(`/${game_state.session_id}/timeLeft`).set(Math.round(ms / 1000));
   },
   onstart: function () {
     console.log("timer started");
@@ -408,6 +409,7 @@ const moveToNextQuestion = () => {
     .then((data) => {
       timer.start(10).on("end", function () {
         moveToNextQuestion();
+        db.ref(`/${game_state.session_id}/timeLeft`).set(0);
       });
     });
 };

@@ -21,3 +21,36 @@
 .question_component {
     display: none;
 }
+
+.profile {width: 100%; border-radius: 100px; max-width: 75px;}
+      
+.progress {
+      display: -ms-flexbox;
+      display: flex;
+      height: 20px;
+      overflow: hidden;
+      line-height: 0;
+      font-size: .75rem;
+      background-color: #e9ecef;
+      border-radius: 15px;
+  }
+
+.progress-bar {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -ms-flex-pack: center;
+      justify-content: center;
+      overflow: hidden;
+      color: #fff;
+      text-align: center;
+      white-space: nowrap;
+      background-color: #72D254;
+      transition: width .6s ease;
+  }
+  
+  
+  .winner {background-color: #FFDD00; border-radius: 30px; padding-top: 15px; padding-bottom: 10px;}
+  
+  .banner {background-color: #FFDD00; border-radius: 0 0 30px 30px; padding-top: 15px; padding-bottom: 10px;}
