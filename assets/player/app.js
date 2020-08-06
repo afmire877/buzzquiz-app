@@ -1,6 +1,9 @@
 // Init Game State
 let game_state = false;
+//YQsmoHot7
 let clientPlayer = false;
+const lettersArray = ["a", "b", "c", "d", "e"];
+
 //Init function
 (function () {
   //   _g3T-8KGI
@@ -12,7 +15,6 @@ let clientPlayer = false;
     db.ref(`/${room_id}`).on("value", (snapshot) => {
       if (snapshot.val() && !game_state) {
         game_state = snapshot.val();
-        console.log(game_state);
         $(".join_room_form").remove();
         render_player_form();
         gameSetup();
@@ -25,16 +27,28 @@ let clientPlayer = false;
   });
 })();
 
-const gameSetup = () => {
+const gameSetup = async () => {
+  const { session_id } = game_state;
   // Firebase EventListners
-  db.ref(`/${game_state.session_id}/players`).on("value", (snapshot) => {
+  db.ref(`/${session_id}/players`).on("value", (snapshot) => {
     const { isPlaying, isWaiting } = game_state;
     if (!isPlaying && isWaiting && clientPlayer)
       render_waiting_room(snapshot.val());
   });
-  db.ref(`/${game_state.session_id}`).on("value", (snapshot) =>
+  db.ref(`/${session_id}`).on("value", (snapshot) =>
     snapshot.val() ? (game_state = snapshot.val()) : null
   );
+  // Question Changer
+  db.ref(`/${session_id}/currentQIndex`).on("value", (snapshot) => {
+    if (snapshot.val() === false) return;
+    let questions = Array.from(
+      document.querySelector(".game_container").children
+    );
+    console.log(snapshot.val());
+    questions.forEach((q) => (q.style.display = "none"));
+    document.querySelector(`.question-${snapshot.val()}`).style.display =
+      "block";
+  });
 };
 
 /// Componenet functions - That just render on screen
@@ -149,81 +163,117 @@ const render_player_form = () => {
           })
           .catch((e) => console.log(e));
       });
+      db.ref(`/${game_state.session_id}/isWaiting`).on("value", (snapshot) => {
+        console.log(snapshot.val());
+        let isWaiting = snapshot.val();
+        if (!isWaiting) {
+          loadQuestions();
+        }
+      });
     });
 };
 
-const QuestionComponent = () => {
-  const question = `<div class="container">
-  <!-- navigation -->
-  <div class="row mt-5 px-3">
-    <div class="col">
-      <i class="fas fa-chevron-left"></i>
+const render_questions = () => {
+  let html = "";
+  game_state.quizData.forEach((item, i) => {
+    const { question, options, timer, type, image_url } = item;
+
+    html += `
+    <div class="container question_component question-${i} ${i}" style="display:${
+      i === game_state.currentQIndex ? "block" : "none"
+    }">
+    <!-- breadcrumbs -->
+    <div class="row mt-4 px-3">
+      <div class="col">
+        <h2>Question ${i + 1}/${game_state?.quizData.length}</h2>
+      </div>
     </div>
-  </div>
-  <!-- breadcrumbs -->
-  <div class="row mt-4 px-3">
-    <div class="col">
-      <h2>Question 1/10</h2>
+    <!-- question -->
+    <div class="row mt-3 px-3">
+      <div class="col">
+       <h1> ${question} <h1>
+      </div>
     </div>
-  </div>
-  <!-- question -->
-  <div class="row mt-3 px-3">
-    <div class="col">
-     <h1> What is the name of this character?<h1>
-    </div>
-  </div>
-  <!-- single image-->
-  <div class="row mt-3 px-3">
-    <div class="col">
-   <img src="https://via.placeholder.com/1500x1000" width="100%"/>
-    </div>
-  </div>
-  <!-- four image-->
-  <div class="row mt-3 px-3">
-    <div class="col-6 mb-3">
-   <img src="https://via.placeholder.com/1500x1000" width="100%"/>
-    </div>
-    <div class="col-6 mb-3">
-   <img src="https://via.placeholder.com/1500x1000" width="100%"/>
-    </div>
-    <div class="col-6 mb-3">
-   <img src="https://via.placeholder.com/1500x1000" width="100%"/>
-    </div>
-    <div class="col-6 mb-3">
-   <img src="https://via.placeholder.com/1500x1000" width="100%"/>
-    </div>
-  </div>
-  <!-- Timer -->
-  <div class="row mt-3 px-3">
-    <div class="col">
-      <hr class=""/>
-      <hr class="selected"/>
-    </div>
-  </div>
-  <!-- answers -->
-  <div class="row mt-3">
-    <div class="col answer">
-      <button class="selected"><div class="number">a</div> <p>Answer</p></button>
-      <button><div class="number">b</div> <p>Answer</p></button>
-      <button><div class="number">c</div> <p>Answer</p></button>
-      <button class="correct"><div class="number">d</div> <p>Answer</p></button>
-      <div class="row">
-        <div class="col mt-4">
-          <div class="center-div">
-            <div class="c100 p50 small black">
-                  <span>2/10</span>
-                  <div class="slice">
-                      <div class="bar"></div>
-                      <div class="fill"></div>
+    `;
+    switch (type) {
+      case "match":
+        html += `<div class="row mt-3 px-3">`;
+        image_url.forEach((image) => {
+          html += `
+                  <div class="col-6 mb-3">
+                      <img src="${image}" width="100%"/>
                   </div>
-              </div>
+                `;
+        });
+        html += `</div>`;
+        break;
+      case "image":
+        image_url.forEach((image) => {
+          html += `
+                  <div class="col-6 mb-3">
+                      <img src="${image}" width="100%"/>
+                  </div>
+                `;
+        });
+        break;
+      default:
+        break;
+    }
+    html += `
+    <div class="row mt-3 px-3">
+      <div class="col">
+        <hr class=""/>
+        <hr class="selected"/>
+      </div>
+    </div>
+    
+    <div class="row mt-3">
+      <div class="col answer">`;
+    options.forEach((answer, i) => {
+      html += `<button data-value="${answer}"><div class="number">${lettersArray[i]}</div> <p>${answer}</p></button>`;
+    });
+    // class correct for green.
+    // class Selected for when clicked
+    html += `
+    </div>
+    </div>
+    <div class="row">
+          <div class="col mt-4">
+            <div class="center-div">
+              <div class="c100 p0 small black">
+                    <span>${timer}</span>
+                    <div class="slice">
+                        <div class="bar"></div>
+                        <div class="fill"></div>
+                    </div>
+                </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
- `;
-  $(".game_container").append(question);
+   `;
+  });
+
+  $(".game_container")
+    .append(html)
+    .promise()
+    .done(function () {
+      $(".answer button").on("click", function (e) {
+        // Addeds Class selected
+        const button = e.target.closest("button");
+        const buttonContainer = button.closest(".answer");
+        Array.from(buttonContainer.children).forEach((b) => {
+          b.classList.remove("selected");
+        });
+        button.classList.add("selected");
+
+        // console.log("value ", button.dataset.value);
+        // button.dataset.value
+        // removes selected from all other buttons
+        //
+      });
+    });
 };
 
 /**
@@ -237,4 +287,9 @@ const addPlayerToFirebase = (player) => {
   return db
     .ref(`/${game_state.session_id}/players`)
     .set([...game_state.players, player]);
+};
+
+const loadQuestions = () => {
+  $(".game_container").empty();
+  render_questions();
 };
