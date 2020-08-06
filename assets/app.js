@@ -19,3 +19,11 @@ $(document).ready(function () {
     });
   });
 });
+
+var animation = bodymovin.loadAnimation({
+  container: document.getElementById('lottie'), // Required
+  path: 'assets/bodymovin/buzzquiz.json', // Required
+  renderer: 'svg', // Required
+  loop: true, 
+  autoplay: true
+})
