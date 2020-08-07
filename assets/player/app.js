@@ -323,9 +323,8 @@ const render_result_page = () => {
 const render_leaderboard = () => {
   $(".leaderboard_listing").empty();
   let html = "";
-  let leaderboard = [...game_state.players]
-    .sort((a, b) => a.totalPoints + b)
-    .reverse();
+  let leaderboard = [...game_state.players].sort((a, b) => a.totalPoints + b);
+
   console.log(leaderboard);
   leaderboard.forEach(({ name, avatar_uri, totalPoints }, i) => {
     html += `
