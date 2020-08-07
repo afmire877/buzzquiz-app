@@ -20,8 +20,8 @@ body {
   font-size: 26px;
 }
 
-.player-btn, .qm-btn {
-    background-image: url("/assets/img/background-playerbtn.png");
+.player-btn {
+    background-image: url("/assets/img/back-player.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -38,6 +38,26 @@ body {
     font-size: 16px;
     font-weight: bold;
     box-shadow: 4px 4px 8px #616060;
+}
+
+.qm-btn {
+  background-image: url("/assets/img/qm-back.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 30px 15px 30px 20px;
+  text-align: right;
+  margin: 0 auto;
+  margin-top: 20px;
+  text-decoration: none;
+  color: black;
+  border-radius: 35px;
+  display: block;
+  width: 250px;
+  font-family: 'TTNorms-Bold';
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 4px 4px 8px #616060;
 }
 
 .text-center {
